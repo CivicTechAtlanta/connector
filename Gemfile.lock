@@ -54,6 +54,7 @@ GEM
     minitest (5.3.5)
     multi_json (1.10.1)
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -105,12 +106,15 @@ GEM
       coffee-rails
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2014.5)
+      tzinfo (>= 1.0.0)
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
@@ -122,4 +126,5 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
