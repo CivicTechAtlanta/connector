@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    @project.events all
   end
 
   # GET /projects/1
