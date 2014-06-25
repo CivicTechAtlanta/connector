@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/about'
 
+  get 'welcome/index'
+
+  get 'people/contact'
+
   resources :organizations
 
   resources :events
