@@ -3,9 +3,6 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string :first_name
       t.string :last_name
-      t.integer :project_id
-      t.integer :organization_id
-      t.integer :event_id
 
       t.timestamps
     end

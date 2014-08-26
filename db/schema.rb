@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625152318) do
+ActiveRecord::Schema.define(version: 20140723022130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,39 +19,72 @@ ActiveRecord::Schema.define(version: 20140625152318) do
   create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "person_id"
-    t.integer  "project_id"
-    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "events_projects", force: true do |t|
+    t.integer  "event_id",   null: false
+    t.integer  "project_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events_projects", ["event_id", "project_id"], name: "index_events_projects_on_event_id_and_project_id", unique: true, using: :btree
 
   create_table "organizations", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "person_id"
-    t.integer  "event_id"
-    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "organizations_projects", force: true do |t|
+    t.integer  "organization_id", null: false
+    t.integer  "project_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organizations_projects", ["organization_id", "project_id"], name: "index_organizations_projects_on_organization_id_and_project_id", unique: true, using: :btree
 
   create_table "people", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "project_id"
-    t.integer  "organization_id"
-    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "people_events", force: true do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "event_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people_events", ["person_id", "event_id"], name: "index_people_events_on_person_id_and_event_id", unique: true, using: :btree
+
+  create_table "people_organizations", force: true do |t|
+    t.integer  "person_id",       null: false
+    t.integer  "organization_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people_organizations", ["person_id", "organization_id"], name: "index_people_organizations_on_person_id_and_organization_id", using: :btree
+
+  create_table "people_projects", force: true do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "project_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people_projects", ["person_id", "project_id"], name: "index_people_projects_on_person_id_and_project_id", unique: true, using: :btree
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "event_id"
-    t.integer  "person_id"
-    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
