@@ -1,2 +1,9 @@
+/*
+ *= require_tree .
+ */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body:not(.static) {
+  margin-top: $navbar-height + 20px;
+}

@@ -1,0 +1,27 @@
+.row
+  .col-sm-6
+    h1 = @project.name
+    .well
+      div = @project.description
+  .col-sm-6
+    h2 Contributors
+    .well
+      ul
+        - @project.people.each do |p|
+          li = link_to p.name, p
+
+.row
+  .col-sm-6
+    h2 Organizations
+    .well
+      ul
+        - @project.organizations.each do |o|
+         li = link_to o.name, o
+  .col-sm-6
+    h2 Event History
+    .well
+      ul
+        - @project.events.each do |e|
+          li
+            = link_to e.name, e
+            |  on #{e.updated_at.to_date}
