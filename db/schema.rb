@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20140723022130) do
     t.datetime "updated_at"
   end
 
+  create_table "events_people", force: true do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "event_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events_people", ["person_id", "event_id"], name: "index_events_people_on_person_id_and_event_id", unique: true, using: :btree
+
   create_table "events_projects", force: true do |t|
     t.integer  "event_id",   null: false
     t.integer  "project_id", null: false
@@ -39,6 +48,15 @@ ActiveRecord::Schema.define(version: 20140723022130) do
     t.datetime "updated_at"
   end
 
+  create_table "organizations_people", force: true do |t|
+    t.integer  "person_id",       null: false
+    t.integer  "organization_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organizations_people", ["person_id", "organization_id"], name: "index_organizations_people_on_person_id_and_organization_id", using: :btree
+
   create_table "organizations_projects", force: true do |t|
     t.integer  "organization_id", null: false
     t.integer  "project_id",      null: false
@@ -54,24 +72,6 @@ ActiveRecord::Schema.define(version: 20140723022130) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "people_events", force: true do |t|
-    t.integer  "person_id",  null: false
-    t.integer  "event_id",   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "people_events", ["person_id", "event_id"], name: "index_people_events_on_person_id_and_event_id", unique: true, using: :btree
-
-  create_table "people_organizations", force: true do |t|
-    t.integer  "person_id",       null: false
-    t.integer  "organization_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "people_organizations", ["person_id", "organization_id"], name: "index_people_organizations_on_person_id_and_organization_id", using: :btree
 
   create_table "people_projects", force: true do |t|
     t.integer  "person_id",  null: false

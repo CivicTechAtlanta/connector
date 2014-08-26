@@ -1,0 +1,11 @@
+table.table
+  thead: tr
+    td Name
+    td Description
+    td
+  tbody
+    - @projects.each do |project|
+      tr
+        td = project.name
+        td = truncate(project.description, length: 150, omission: " --More--")
+        td = link_to "View", project, class: "btn btn-primary"

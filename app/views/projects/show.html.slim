@@ -1,0 +1,18 @@
+.row
+  .col-sm-12
+    h1 = @project.name
+    div = @project.description
+s
+.row
+  .col-sm-6
+    h2 Contributors
+    .well
+      ul
+        - @project.people.each do |p|
+          li = link_to p.name, p
+  .col-sm-6
+    h2 Organizations
+    .well
+      ul
+        - @project.organizations.each do |o|
+         li = link_to o.name, o
