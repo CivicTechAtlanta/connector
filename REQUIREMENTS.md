@@ -24,10 +24,20 @@ A person belongs to projects and organizations. A person attends events.
 #### Project
 
 A project is worked on at an event. It is worked on by people and linked to organizations.
+-Name
+-Description
+-Type
+-Members
+-GitHub Link
+-Where it's located
 
 #### Event
 
 Many people and organizations can attend an event. An event has a list of projects that were worked on during it.
+-Events can be subscribed to via iCalendar
+-
+
+
 
 #### Organization
 
