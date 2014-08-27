@@ -1,9 +1,7 @@
 development:
   adapter: postgresql
-  username: connector
   database: connector_development
 
 test:
   adapter: postgresql
-  username: connector
   database: connector_test
