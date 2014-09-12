@@ -76,6 +76,4 @@ User accounts should not use passwords. Instead, use Facebook, Twitter, and [Ema
 
 ## Technical Requirements
 
-The Connector is a Rails app, following "The Rails Way" as closely as possible. For features not built into Rails, use the most popular gem available. The project should be designed to deploy on Heroku and follow Heroku's best practices for deployment. The HTML and CSS should be built on Boostrap. 
-
-
+The Connector is a Rails app, following "The Rails Way" as closely as possible. For features not built into Rails, use the most popular gem available. The project should be designed to deploy on Heroku and follow Heroku's best practices for deployment. The HTML and CSS should be built on Bootstrap. 

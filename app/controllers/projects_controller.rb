@@ -14,6 +14,6 @@ class ProjectsController < ApplicationController
   end
 
   def project
-    projects.includes(:organizations, :people, :events).find(params[:id])
+    projects.includes(:people, :events).find(params[:id])
   end
 end

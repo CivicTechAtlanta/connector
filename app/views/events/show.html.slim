@@ -1,0 +1,21 @@
+.row
+  .col-sm-12
+    h1 = @event.name
+    .well
+      div = @event.description
+
+
+
+.row
+  .col-sm-6
+    h4 Projects
+    .well
+      ul
+        - @event.projects.each do |pr|
+         li = link_to pr.name, pr
+  .col-sm-6
+    h4 Attending
+    .well
+      ul
+        - @event.people.each do |p|
+          li = link_to p.name, p
