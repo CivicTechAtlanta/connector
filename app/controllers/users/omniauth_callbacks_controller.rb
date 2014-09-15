@@ -7,7 +7,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
      	flash[:success] = "Welcome, #{@user.name}!" if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      flash[:danger] = "We're sorry, but we couldn't log you in." 
+      redirect_to root_path
     end
   end
 
