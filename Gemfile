@@ -11,6 +11,7 @@ gem 'pg'
 
 # Login
 gem 'devise'
+gem 'omniauth-facebook'
 
 # Assets pipeline
 gem 'sass-rails', '~> 4.0.3'
