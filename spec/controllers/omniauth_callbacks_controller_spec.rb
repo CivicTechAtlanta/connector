@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
-	before do 
+	before do
 	  request.env["devise.mapping"] = Devise.mappings[:user]
 	  request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
 	end
@@ -22,7 +22,7 @@ RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
 
 		context "with an existing user" do
 			let!(:user) { FactoryGirl.create(:user, provider: "facebook", name: "Jessica", email: "test@test.com", uid: "123545") }
-			
+
 			it "does not create a new user" do
 				expect {
         	get :facebook
