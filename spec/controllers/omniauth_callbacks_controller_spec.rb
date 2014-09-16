@@ -21,7 +21,7 @@ RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
     end
 
     context "with an existing user" do
-      let!(:user) { FactoryGirl.create(:user, provider: "facebook", name: "Jessica", email: "test@test.com", uid: "123545") }
+      let!(:user) { FactoryGirl.create(:user, provider: "facebook", email: "test@test.com", uid: "123545") }
 
       it "does not create a new user" do
         expect {
