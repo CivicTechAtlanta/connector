@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :projects
-  resources :people, only: :show
+  resources :people
   resources :events
 end
