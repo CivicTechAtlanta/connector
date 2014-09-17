@@ -1,0 +1,13 @@
+.row
+  .col-sm-8
+    h1 = @person.name
+    - if !@person.image.nil?
+      = image_tag(@person.image+"?height=200", height: '200')
+  .col-sm-4
+    h4 Projects
+    .well
+      ul
+        - @projects.each do |project|
+          li
+            = link_to project.name, project
+
