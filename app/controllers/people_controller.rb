@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  before_filter :login_required, only: [:edit, :update]
+
   def show
     @person = person
     @projects = projects(@person)
