@@ -1,6 +1,6 @@
 class RemoveUserColumms < ActiveRecord::Migration
-  def change
-    remove_column :users, :image
-    remove_column :users, :name
+  def up
+    remove_column :users, :image, :string
+    remove_column :users, :name, :string
   end
 end
