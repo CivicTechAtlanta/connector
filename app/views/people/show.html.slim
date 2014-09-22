@@ -1,9 +1,9 @@
 .row
   .col-sm-8
     h1 = @person.name
-    - if !@person.image.nil?
-      = image_tag(@person.image+"?height=200", height: '200')
-    - if user_signed_in? && current_user.person_id == @person.id
+    - if @person.image
+      = image_tag("#{@person.image}?height=200", height: '200')
+    - if user_signed_in? && current_user.person == @person
       = link_to "Update", edit_person_path, method: :put
   .col-sm-4
     h4 Projects
