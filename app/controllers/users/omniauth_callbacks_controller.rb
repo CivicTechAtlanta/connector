@@ -1,10 +1,11 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    @user = from_omniauth(request.env["omniauth.auth"])
+    person = person_from_omniauth(request.env["omniauth.auth"])
+    user = user_from_omniauth(request.env["omniauth.auth"], person)
 
-    if @user.persisted?
-      sign_in_and_redirect(@user, event: :authentication)
-      flash[:success] = "Welcome, #{@user.name}!" if is_navigational_format?
+    if user.persisted?
+      sign_in_and_redirect(user, event: :authentication)
+      flash[:success] = "Welcome!" if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       flash[:danger] = "We're sorry, but we couldn't log you in."
@@ -13,12 +14,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
-  def from_omniauth(auth)
+
+  def user_from_omniauth(auth, person)
     User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
-      user.image = auth.info.image
+      user.person = person
+    end
+  end
+
+  def person_from_omniauth(auth)
+    Person.where(email: auth.info.email).first_or_create do |person|
+      person.email = auth.info.email
+      person.name = auth.info.name
+      person.image = auth.info.image
     end
   end
 end
