@@ -50,4 +50,47 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.body).to include(event.name)
     end
   end
+
+  describe "GET 'New'" do
+    let!(:user) { FactoryGirl.create(:user) }
+
+    context "when the user is not logged in" do
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "when the user is logged in" do
+      it "works" do
+        sign_in user
+        get :new
+        expect(response).to be_success
+      end
+    end
+
+  end
+
+  describe "POST 'Create'" do
+    let!(:user) { FactoryGirl.create(:user) }
+
+    context "when the user is not logged in" do
+      it "redirects" do
+        expect {
+          post :create, project: {name: "Test", description: "Testing description."}
+        }.to_not change{ Project.count }
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "when the user is logged in" do
+      it "works" do
+        sign_in user
+        expect {
+          post :create, project: {name: "Test", description: "Testing description."}
+        }.to change{ Project.count }.by(1)
+        expect(response).to redirect_to Project.last
+      end
+    end
+  end
 end
