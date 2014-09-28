@@ -68,7 +68,6 @@ RSpec.describe ProjectsController, :type => :controller do
         expect(response).to be_success
       end
     end
-
   end
 
   describe "POST 'Create'" do
@@ -93,4 +92,38 @@ RSpec.describe ProjectsController, :type => :controller do
       end
     end
   end
+
+  describe "GET 'Edit'" do
+    let!(:person) { FactoryGirl.create(:person) }
+    let!(:user) { FactoryGirl.create(:user, person_id: person.id) }
+    let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com") }
+
+    before(:each) do
+      project1.people << person
+    end
+
+    context "when the user is not logged in" do
+      it "does not work" do
+        get :edit, id: project1.id
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "when the user edits a project that they are not a member of" do
+      it "does not work" do
+        sign_in user2
+        get :edit, id: project1.id
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "when the user edits a project that they are a member of" do
+      it "works" do
+        sign_in user
+        get :edit, id: project1.id
+        expect(response).to be_success
+      end
+    end
+  end
+
 end
