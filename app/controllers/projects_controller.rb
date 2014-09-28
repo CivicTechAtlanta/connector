@@ -1,7 +1,6 @@
-require 'pry'
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :edit]
-  before_filter :verify_user_belongs_to_project, only: [:edit]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :verify_user_belongs_to_project, only: [:edit, :update]
 
   def has_access_to_edit?
     project.people.include? current_user.person
@@ -39,6 +38,15 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = project
+  end
+
+  def update
+    if project.update(project_params)
+      flash[:success] = "Project successfully updated!"
+    else
+      flash[:danger] = "We're sorry, your information could not be updated. Name and description are required fields."
+    end
+    redirect_to project
   end
 
   private

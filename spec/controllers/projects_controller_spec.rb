@@ -5,6 +5,9 @@ RSpec.describe ProjectsController, :type => :controller do
 
   let!(:project1) { FactoryGirl.create(:project) }
   let!(:project2) { FactoryGirl.create(:project) }
+  let!(:person) { FactoryGirl.create(:person) }
+  let!(:user) { FactoryGirl.create(:user, person_id: person.id) }
+  let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com") }
 
   describe "GET 'index'" do
     it "works" do
@@ -20,12 +23,11 @@ RSpec.describe ProjectsController, :type => :controller do
   end
 
   describe "GET 'show'" do
-    let!(:person1) { FactoryGirl.create(:person) }
     let!(:event) { FactoryGirl.create(:event) }
     let!(:unused_person) { FactoryGirl.create(:person) }
 
     before(:each) do
-      project1.people << person1
+      project1.people << person
       project1.events << event
     end
 
@@ -42,7 +44,7 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the people" do
       get :show, id: project1.id
-      expect(response.body).to include(person1.name)
+      expect(response.body).to include(person.name)
     end
 
     it "shows the events" do
@@ -52,8 +54,6 @@ RSpec.describe ProjectsController, :type => :controller do
   end
 
   describe "GET 'New'" do
-    let!(:user) { FactoryGirl.create(:user) }
-
     context "when the user is not logged in" do
       it "redirects" do
         get :new
@@ -71,8 +71,6 @@ RSpec.describe ProjectsController, :type => :controller do
   end
 
   describe "POST 'Create'" do
-    let!(:user) { FactoryGirl.create(:user) }
-
     context "when the user is not logged in" do
       it "redirects" do
         expect {
@@ -94,10 +92,6 @@ RSpec.describe ProjectsController, :type => :controller do
   end
 
   describe "GET 'Edit'" do
-    let!(:person) { FactoryGirl.create(:person) }
-    let!(:user) { FactoryGirl.create(:user, person_id: person.id) }
-    let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com") }
-
     before(:each) do
       project1.people << person
     end
@@ -126,4 +120,41 @@ RSpec.describe ProjectsController, :type => :controller do
     end
   end
 
+  describe "POST 'update'" do
+    let!(:project_params) { {name: "tester", description: "testing123"} }
+    before(:each) do
+      project1.people << person
+    end
+
+    context "user is not logged in" do
+      it "does not update a project" do
+        post :update, id: project1.id, project: project_params
+        project1.reload
+        expect(project1.name).to_not eq("tester")
+        expect(project1.description).to_not eq("testing123")
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "with a logged in user that does not belong to this person" do
+      it "does not update a project" do
+        sign_in user2
+        post :update, id: project1.id, project: project_params
+        project1.reload
+        expect(project1.name).to_not eq("tester")
+        expect(project1.description).to_not eq("testing123")
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "with a logged in user that does belong to this person" do
+      it "updates a project" do
+        sign_in user
+        post :update, id: project1.id, project: project_params
+        project1.reload
+        expect(project1.name).to eq("tester")
+        expect(project1.description).to eq("testing123")
+      end
+    end
+  end
 end
