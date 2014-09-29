@@ -1,15 +1,23 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_filter :verify_user_belongs_to_project, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :verify_user_belongs_to_project, only: [:edit, :update, :destroy]
+  before_filter :verify_project_creator, only: [:destroy]
 
-  def has_access_to_edit?
+  def has_access_to_update?
     project.people.include? current_user.person
   end
 
   def verify_user_belongs_to_project
-    unless has_access_to_edit?
+    unless has_access_to_update?
       redirect_to('/')
       flash[:danger] = "You must be a member of the project to edit it."
+    end
+  end
+
+  def verify_project_creator
+    @project = project
+    unless @project.people.first == current_user.person
+      redirect_to @project
     end
   end
 
@@ -47,6 +55,16 @@ class ProjectsController < ApplicationController
       flash[:danger] = "We're sorry, your information could not be updated. Name and description are required fields."
     end
     redirect_to project
+  end
+
+  def destroy
+    @project = project
+    if @project.destroy
+      flash[:success] = "Project successfully deleted!"
+    else
+      flash[:danger] = "The project could not be deleted. Only the project creator can delete the project."
+    end
+    redirect_to projects_path
   end
 
   private

@@ -6,8 +6,9 @@ RSpec.describe ProjectsController, :type => :controller do
   let!(:project1) { FactoryGirl.create(:project) }
   let!(:project2) { FactoryGirl.create(:project) }
   let!(:person) { FactoryGirl.create(:person) }
+  let!(:person2) { FactoryGirl.create(:person) }
   let!(:user) { FactoryGirl.create(:user, person_id: person.id) }
-  let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com") }
+  let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com", person_id: person2.id) }
 
   describe "GET 'index'" do
     it "works" do
@@ -97,22 +98,22 @@ RSpec.describe ProjectsController, :type => :controller do
     end
 
     context "when the user is not logged in" do
-      it "does not work" do
+      it "redirects" do
         get :edit, id: project1.id
         expect(response).to redirect_to root_path
       end
     end
 
-    context "when the user edits a project that they are not a member of" do
-      it "does not work" do
+    context "when the user is not a member of that project" do
+      it "redirects" do
         sign_in user2
         get :edit, id: project1.id
         expect(response).to redirect_to root_path
       end
     end
 
-    context "when the user edits a project that they are a member of" do
-      it "works" do
+    context "when the user is a member of that project" do
+      it "edits the project" do
         sign_in user
         get :edit, id: project1.id
         expect(response).to be_success
@@ -126,7 +127,7 @@ RSpec.describe ProjectsController, :type => :controller do
       project1.people << person
     end
 
-    context "user is not logged in" do
+    context "when user is not logged in" do
       it "does not update a project" do
         post :update, id: project1.id, project: project_params
         project1.reload
@@ -136,7 +137,7 @@ RSpec.describe ProjectsController, :type => :controller do
       end
     end
 
-    context "with a logged in user that does not belong to this person" do
+    context "when the user is not a member of that project" do
       it "does not update a project" do
         sign_in user2
         post :update, id: project1.id, project: project_params
@@ -147,13 +148,55 @@ RSpec.describe ProjectsController, :type => :controller do
       end
     end
 
-    context "with a logged in user that does belong to this person" do
+    context "when the user is a member of that project" do
       it "updates a project" do
         sign_in user
         post :update, id: project1.id, project: project_params
         project1.reload
         expect(project1.name).to eq("tester")
         expect(project1.description).to eq("testing123")
+      end
+    end
+  end
+
+  describe "POST 'destroy'" do
+    let!(:person3) { FactoryGirl.create(:person) }
+    let!(:user3) { FactoryGirl.create(:user, email: "user3@example.com", person_id: person3.id) }
+    before(:each) do
+      project1.people << person
+      project1.people << person3
+    end
+
+    context "when user is not logged in" do
+      it "redirects" do
+        post :destroy, id: project1.id
+        expect(project1.present?).to be(true)
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "when the user is not a member of that project" do
+      it "redirects" do
+        sign_in user2
+        post :destroy, id: project1.id
+        expect(project1.present?).to be(true)
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "when the user is a member of that project" do
+      it "redirects" do
+        sign_in user3
+        post :destroy, id: project1.id
+        expect(project1.present?).to be(true)
+        expect(response).to redirect_to project1
+      end
+    end
+    context "when the user is the creator of that project" do
+      it "deletes the project" do
+        sign_in user
+        expect {
+          post :destroy, id: project1.id
+        }.to change(Project, :count).by(-1)
+        expect(response).to redirect_to projects_path
       end
     end
   end
