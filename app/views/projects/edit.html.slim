@@ -1,10 +1,2 @@
 h1 Edit New Project
-=form_for @project do |f|
-  .form_group
-    =f.label :name, "Name"
-    =f.text_field :name, class: "form-control"
-    br
-    =f.label :description, "Description"
-    =f.text_area :description, class: "form-control"
-    br
-    button.btn.btn-primary type="submit" Update Item
+=render "form"
