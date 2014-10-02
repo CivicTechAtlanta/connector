@@ -42,10 +42,11 @@ ActiveRecord::Schema.define(version: 20140922171717) do
   add_index "organizations_projects", ["organization_id", "project_id"], name: "index_organizations_projects_on_organization_id_and_project_id", unique: true, using: :btree
 
   create_table "people", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "email"
+    t.string   "image"
   end
 
   create_table "people_projects", force: true do |t|
@@ -79,8 +80,7 @@ ActiveRecord::Schema.define(version: 20140922171717) do
     t.datetime "updated_at"
     t.string   "provider"
     t.text     "uid"
-    t.string   "name"
-    t.string   "image"
+    t.integer  "person_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

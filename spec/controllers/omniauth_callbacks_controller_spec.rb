@@ -14,6 +14,12 @@ RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
         }.to change{ User.count }.by(1)
       end
 
+      it "creates a new person" do
+        expect {
+          get :facebook
+        }.to change{ Person.count }.by(1)
+      end
+
       it "signs the user in" do
         get :facebook
         expect(controller.current_user).to eq(User.last)
@@ -21,7 +27,7 @@ RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
     end
 
     context "with an existing user" do
-      let!(:user) { FactoryGirl.create(:user, provider: "facebook", name: "Jessica", email: "test@test.com", uid: "123545") }
+      let!(:user) { FactoryGirl.create(:user, provider: "facebook", email: "test@test.com", uid: "123545") }
 
       it "does not create a new user" do
         expect {
@@ -29,9 +35,26 @@ RSpec.describe Users::OmniauthCallbacksController , :type => :controller do
         }.to_not change{ User.count }
       end
 
+      it "creates a new person" do
+        expect {
+          get :facebook
+        }.to change{ Person.count }.by(1)
+      end
+
       it "signs the user in" do
         get :facebook
         expect(controller.current_user).to eq(user)
+      end
+    end
+
+    context "with an existing user and person" do
+      let!(:user) { FactoryGirl.create(:user, provider: "facebook", email: "test@test.com", uid: "123545") }
+      let!(:person) { FactoryGirl.create(:person, name: "Test", email: "test@test.com") }
+
+      it "does not create a new person" do
+        expect {
+          get :facebook
+        }.to_not change{ Person.count }
       end
     end
   end

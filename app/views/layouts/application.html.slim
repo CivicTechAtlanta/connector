@@ -6,6 +6,9 @@ html
     = csrf_meta_tags
   body
     = render "layouts/nav"
+    - flash.each do |key, value|
+      div role="alert" class="alert alert-#{key}"
+        = value
     .container
       = yield
     footer
