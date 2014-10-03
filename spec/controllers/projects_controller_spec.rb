@@ -24,12 +24,10 @@ RSpec.describe ProjectsController, :type => :controller do
   end
 
   describe "GET 'show'" do
-    let!(:event) { FactoryGirl.create(:event) }
     let!(:unused_person) { FactoryGirl.create(:person) }
 
     before(:each) do
       project1.people << person
-      project1.events << event
     end
 
     it "works" do
@@ -46,11 +44,6 @@ RSpec.describe ProjectsController, :type => :controller do
     it "shows the people" do
       get :show, id: project1.id
       expect(response.body).to include(person.name)
-    end
-
-    it "shows the events" do
-      get :show, id: project1.id
-      expect(response.body).to include(event.name)
     end
   end
 
