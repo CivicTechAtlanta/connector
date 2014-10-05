@@ -80,6 +80,7 @@ RSpec.describe ProjectsController, :type => :controller do
         expect {
           post :create, project: {name: "Test", description: "Testing description."}
         }.to change{ Project.count }.by(1)
+        expect(Project.last.people.first).to eq(user.person)
         expect(response).to redirect_to Project.last
       end
     end

@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      @project.people << current_user.person
       redirect_to (@project)
       flash[:success] = "Project successfully created!"
     else
