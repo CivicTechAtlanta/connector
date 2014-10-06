@@ -28,6 +28,7 @@ gem 'dotenv-rails'
 
 group :development do
   gem 'spring-commands-rspec'
+  gem 'pry'
 end
 
 group :development, :test do
