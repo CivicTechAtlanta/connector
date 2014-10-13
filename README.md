@@ -25,7 +25,7 @@ In the root of the application on your local machine, create a file named `.env`
 
 We ask that you follow these rules when contributing:
 
-1. Always create a new branch to commit your changes to:
+- Always create a new branch to commit your changes to:
 
 **Terminal**
 
@@ -34,8 +34,8 @@ We ask that you follow these rules when contributing:
     git checkout -b your-feature-name
 
 
-2. When you are ready to submit your changes, push everything to your branch and create a pull request
+- When you are ready to submit your changes, push everything to your branch and create a pull request
 
-3. Wait for team approval to merge your changes
+- Wait for team approval to merge your changes
 
-4. DO NOT use scaffold generators. They create a bunch of unnecessary code and don't allow for thinking about the end user experience
+- DO NOT use scaffold generators. They create a bunch of unnecessary code and don't allow for thinking about the end user experience
