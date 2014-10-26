@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = projects.order(updated_at: :asc)
+    @projects = projects.order(updated_at: :desc)
   end
 
   def show

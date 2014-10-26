@@ -1,15 +1,35 @@
-h2 Projects
-- if current_user
-  = link_to "Create Project", new_project_path
+.row-fluid
+  - if current_user
+    .col-xs-6
+      h2.header-padding Projects
+    .col-xs-6.align-right
+      - if current_user
+        = link_to "Create Project", new_project_path, class: "button btn btn-primary pull-down"
+  - else
+    .col-sm-12
+      h2.header-padding Projects
 
-table.table
-  thead: tr
-    td Name
-    td Description
-    td
-  tbody
-    - @projects.each do |project|
-      tr
-        td = project.name
-        td = truncate(project.description, length: 150, omission: " --More--")
-        td = link_to "View", project, class: "btn btn-primary"
+
+.row-fluid.col-md-12
+  - @projects.each do |project|
+    .col-lg-3.col-md-4.col-sm-6.col-xs-12
+      .thumbnail
+        a href= project_path(project.id)
+          img alt="..." data-src="holder.js/236x200"
+        .caption
+          h4 = link_to project.name, project
+          p = "by #{project.people.first.name}"
+          p = truncate(project.description, length: 150, omission: " ... ")
+
+            /  =link_to "Start", project.first_chapter, class: "btn btn-primary btn-block"
+/ table.table
+/   thead: tr
+/     td Name
+/     td Description
+/     td
+/   tbody
+/     - @projects.each do |project|
+/       tr
+/         td = project.name
+/         td = truncate(project.description, length: 150, omission: " --More--")
+/         td = link_to "View", project, class: "btn btn-primary"
