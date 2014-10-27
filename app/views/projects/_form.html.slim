@@ -4,7 +4,15 @@
     =f.text_field :name, class: "form-control"
 
   .form-group
+    =f.label :short_description, "Short Description (150 characters)"
+    =f.text_area :short_description, maxlength: 150, class: "form-control"
+
+  .form-group
     =f.label :description, "Description"
     =f.text_area :description, class: "form-control"
+
+  .form-group
+    =f.label :description, "Additional Project Links"
+    =f.text_field :link, class: "form-control"
 
   =f.submit :class => "btn btn-primary"
