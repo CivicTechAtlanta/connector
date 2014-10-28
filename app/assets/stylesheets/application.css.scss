@@ -1,9 +1,81 @@
 /*
  *= require_tree .
  */
+
+$navbar-height: 100px;
+$navbar-inverse-brand-color: #FFFFFF;
+$navbar-inverse-color: #FFFFFF;
+$navbar-inverse-bg: #1B2334;
+$navbar-inverse-link-color: #FFFFFF;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body:not(.static) {
-  margin-top: $navbar-height + 20px;
+body {
+  margin-top: $navbar-height;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.navbar-brand {
+  font-size: 34px;
+}
+
+.navbar-nav > li > a {
+  font-size: 20px;
+}
+
+.navbar-collapse {
+  width: 50%;
+
+  .nav.navbar-nav {
+    width: 100%;
+
+    li {
+      @extend .text-center;
+      width: 30%;
+    }
+  }
+}
+
+.jumbotron.welcome {
+  background: url(image_path('midtown.jpg'));
+  background-position-y: -200px;
+
+  .well {
+    background: rgba(255,255,255,.8);
+
+    .brigade-logo img {
+      width: 125px;
+    }
+  }
+}
+
+.search-title {
+  font-size: 1.4em;
+  display: block;
+}
+
+.search-container {
+  .hexagon {
+    height: 35px;
+  }
+
+  input {
+    height: 35px;
+  }
+
+  a.tag {
+    cursor: pointer;
+  }
+
+  .search-tags {
+    padding-top: 10px;
+  }
+}
+
+.well {
+  margin-bottom: 0px;
 }

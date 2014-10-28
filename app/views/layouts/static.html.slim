@@ -12,8 +12,6 @@ html
     = yield
     footer
       hr
-      p &copy; 2014 Code for Atlanta
-      - if user_signed_in?
-        = link_to "Logout", destroy_user_session_path
-      - else
-        = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+      .row
+        .col-sm-8.col-sm-offset-2
+          .pull-right &copy; 2014 Code for Atlanta

@@ -1,0 +1,37 @@
+.jumbotron.welcome
+  .container
+    .well.col-sm-8.col-sm-offset-2
+      p This is a template for the Code for Atlanta event tracking app. Add copy here. I'm not quite sure what to put and I am not good at copy. Now I am just trying to fill space.
+      p
+        a.btn.btn-primary.btn-lg.pull-left href="/welcome/about" role="button"  Get Started, Make a Change &raquo;
+        .pull-right.brigade-logo = image_tag "brigade.png"
+.container
+  .row
+    .col-sm-8.col-sm-offset-2
+      .row
+        .col-xs-12.search-container
+          .well.clearfix
+            span.search-title.text-center Search Projects
+            .col-xs-12: input.form-control type="text"
+            .col-xs-12.search-tags
+              span Stuck? Trying searching for
+              '
+              a.tag ruby on rails
+              ' ,
+              a.tag crime
+              ' ,
+              a.tag food
+
+      /.row
+        .col-md-4
+          h2 Topics
+          p Wondering what Code for Atlanta is up to? Wanna find a project to contribute to? Click the button below!
+          p: a.btn.btn-default href="/projects" role="button"  View details &raquo;
+        .col-md-4
+          h2 Events
+          p Code for Atlanta is always adding new events for people of all skill levels. Hackathons and meetups can be found by clicking below.
+          p: a.btn.btn-default href="#" role="button"  View details &raquo;
+        .col-md-4
+          h2 Organizations
+          p Find which of your favorite local organizations help out with code for Atlanta.
+          p: a.btn.btn-default href="/organizations" role="button"  View details &raquo;

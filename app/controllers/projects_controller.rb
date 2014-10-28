@@ -3,23 +3,6 @@ class ProjectsController < ApplicationController
   before_filter :verify_user_belongs_to_project, only: [:edit, :update, :destroy]
   before_filter :verify_project_creator, only: [:destroy]
 
-  def has_access_to_update?
-    project.people.include?(current_user.person)
-  end
-
-  def verify_user_belongs_to_project
-    unless has_access_to_update?
-      redirect_to root_path
-      flash[:danger] = "You must be a member of the project to edit it."
-    end
-  end
-
-  def verify_project_creator
-    unless project.people.first == current_user.person
-      redirect_to project
-    end
-  end
-
   def index
     @projects = projects.order(updated_at: :asc)
   end
@@ -76,5 +59,22 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :description)
+  end
+
+  def has_access_to_update?
+    project.people.include?(current_user.person)
+  end
+
+  def verify_user_belongs_to_project
+    unless has_access_to_update?
+      redirect_to root_path
+      flash[:danger] = "You must be a member of the project to edit it."
+    end
+  end
+
+  def verify_project_creator
+    unless project.people.first == current_user.person
+      redirect_to project
+    end
   end
 end
