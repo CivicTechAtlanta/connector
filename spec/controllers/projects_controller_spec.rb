@@ -11,6 +11,11 @@ RSpec.describe ProjectsController, :type => :controller do
   let!(:user2) { FactoryGirl.create(:user, email: "testing123@example.com", person_id: person2.id) }
 
   describe "GET 'index'" do
+    before(:each) do
+      project1.people << person
+      project2.people << person2
+    end
+
     it "works" do
       get :index
       expect(response).to be_success
@@ -18,8 +23,8 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the projects" do
       get :index
-      expect(response.body).to include(project1.name, project1.description.first(50))
-      expect(response.body).to include(project2.name, project2.description.first(50))
+      expect(response.body).to include(project1.name, project1.short_description.first(150))
+      expect(response.body).to include(project2.name, project2.short_description.first(150))
     end
   end
 

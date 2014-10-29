@@ -1,7 +1,25 @@
 .thumbnail {
-  min-height: 400px;
-  height: 50px;
+  min-height: 430px;
 }
+
+/*.col-xs-12 .container-thumbnail img{
+  min-height: 100%;
+}*/
+
+/*.container-thumbnail {
+  width:100%;
+  min-height:200px;
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+.container-thumbnail img {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%
+}*/
 
 .pull-down {
   margin-top: 20px;

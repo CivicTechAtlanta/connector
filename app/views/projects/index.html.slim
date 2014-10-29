@@ -1,4 +1,4 @@
-.row-fluid
+.row
   - if current_user
     .col-xs-6
       h2.header-padding Projects
@@ -10,26 +10,14 @@
       h2.header-padding Projects
 
 
-.row-fluid.col-md-12
+.row
   - @projects.each do |project|
     .col-lg-3.col-md-4.col-sm-6.col-xs-12
       .thumbnail
-        a href= project_path(project.id)
-          img alt="..." data-src="holder.js/236x200"
+        .container-thumbnail
+          a href= project_path(project.id)
+            = image_tag project.photo.url(:medium), class: "project-image"
         .caption
           h4 = link_to project.name, project
           p = "by #{project.people.first.name}"
-          p = truncate(project.description, length: 150, omission: " ... ")
-
-            /  =link_to "Start", project.first_chapter, class: "btn btn-primary btn-block"
-/ table.table
-/   thead: tr
-/     td Name
-/     td Description
-/     td
-/   tbody
-/     - @projects.each do |project|
-/       tr
-/         td = project.name
-/         td = truncate(project.description, length: 150, omission: " --More--")
-/         td = link_to "View", project, class: "btn btn-primary"
+          p = truncate(project.short_description, length: 150, omission: " ... ")

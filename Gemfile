@@ -26,6 +26,9 @@ gem 'tzinfo-data'
 # Environment
 gem 'dotenv-rails'
 
+# Add Photos
+gem "paperclip", "~> 4.2"
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry'
