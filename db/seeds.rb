@@ -1,6 +1,7 @@
 # Destroy existing
 Project.destroy_all
 Person.destroy_all
+User.destroy_all
 
 projects = []
 people = []
@@ -22,6 +23,8 @@ projects[1].people << people[4]
 
 projects[2].people << people[0]
 projects[2].people << people[4]
+
+projects[3].people << people[1]
 
 projects[4].people << people[0]
 projects[4].people << people[1]
