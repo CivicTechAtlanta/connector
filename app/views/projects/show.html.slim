@@ -1,8 +1,10 @@
-- if current_user && @project.people.include?(current_user)
+- if current_user && @project.people.include?(current_user.person)
   = link_to "Edit Project", edit_project_path
 .row
   .col-sm-8
     h1 = @project.name
+    = image_tag @project.photo.url(:medium)
+    img alt="Who needs an image?" data-src="holder.js/236x200"
     .well
       div = @project.description
   .col-sm-4
