@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe ProjectsController, :type => :controller do
   render_views
@@ -49,6 +50,17 @@ RSpec.describe ProjectsController, :type => :controller do
     it "shows the people" do
       get :show, id: project1.id
       expect(response.body).to include(person.name)
+    end
+  end
+
+  describe "GET 'Join'" do
+    context "when user is not logged in" do
+    end
+
+    context "when user is logged in and already part of project" do
+    end
+
+    context "when user is logged in" do
     end
   end
 
@@ -168,24 +180,28 @@ RSpec.describe ProjectsController, :type => :controller do
 
     context "when user is not logged in" do
       it "redirects" do
-        post :destroy, id: project1.id
-        expect(project1.present?).to be(true)
+        expect {
+          post :destroy, id: project1.id
+        }.to change(Project, :count).by(0)
         expect(response).to redirect_to root_path
       end
     end
     context "when the user is not a member of that project" do
       it "redirects" do
         sign_in user2
-        post :destroy, id: project1.id
-        expect(project1.present?).to be(true)
+        expect {
+          post :destroy, id: project1.id
+        }.to change(Project, :count).by(0)
         expect(response).to redirect_to root_path
       end
     end
     context "when the user is a member of that project" do
       it "redirects" do
         sign_in user3
-        post :destroy, id: project1.id
-        expect(project1.present?).to be(true)
+        binding.pry
+        expect {
+          post :destroy, id: project1.id
+        }.to change(Project, :count).by(0)
         expect(response).to redirect_to project1
       end
     end

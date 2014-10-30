@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :projects
+  get '/projects/:id/join', to: 'projects#join', as: 'join_project'
+
   resources :people
+
+
 end

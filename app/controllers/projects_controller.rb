@@ -64,6 +64,12 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def join
+    project.people << current_user.person
+    flash[:success] = "You have just joined #{project.name}!"
+    redirect_to projects_path
+  end
+
   private
 
   def projects
