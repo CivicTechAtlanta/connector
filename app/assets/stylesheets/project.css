@@ -32,3 +32,7 @@
 .align-right {
   text-align: right;
 }
+
+.btn-danger {
+  margin-left: 10px;
+}

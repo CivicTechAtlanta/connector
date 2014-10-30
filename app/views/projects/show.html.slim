@@ -1,5 +1,7 @@
 - if current_user && @project.people.include?(current_user.person)
+  = link_to "Delete Project", project_path, method: :delete, data: { :confirm => "Are you sure you wish to delete this project?" }, class: "button btn btn-danger pull-right pull-down"
   = link_to "Edit Project", edit_project_path, class: "button btn btn-primary pull-right pull-down"
+
 .row
   .col-sm-8
     h1 = @project.name
