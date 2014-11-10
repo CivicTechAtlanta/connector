@@ -79,3 +79,13 @@ html, body {
 .well {
   margin-bottom: 0px;
 }
+
+.alert-notice {
+  @extend .alert-warning;
+}
+
+.alert {
+  &.no-margin {
+    margin-bottom: 0px;
+  }
+}

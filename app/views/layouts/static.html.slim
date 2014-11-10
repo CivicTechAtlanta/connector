@@ -7,7 +7,7 @@ html
   body.static
     = render "layouts/nav"
     - flash.each do |key, value|
-      div role="alert" class="alert alert-#{key}"
+      div.alert.no-margin role="alert" class="alert-#{key}"
         = value
     = yield
     footer
