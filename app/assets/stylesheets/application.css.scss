@@ -139,6 +139,31 @@ html, body {
   }
 }
 
+.panel.has-list {
+  border-bottom: 0px;
+
+  .panel-heading {
+    border-bottom: 0px;
+  }
+
+  .panel-body {
+    padding: 0px;
+
+    .list-group {
+      margin: 0px;
+    }
+
+    .list-group-item {
+      @include border-bottom-radius(0);
+      @include border-left-radius(0);
+      @include border-right-radius(0);
+      @include border-top-radius(0);
+      border-left: 0px;
+      border-right: 0px;
+    }
+  }
+}
+
 #project {
   .row {
     margin-bottom: 20px;
@@ -153,28 +178,7 @@ html, body {
   }
 
   .comment-wrapper {
-    border-bottom: 0px;
-
-    .panel-body {
-      padding: 0px;
-
-      .list-group {
-        margin: 0px;
-      }
-    }
-
-    .panel-heading {
-      border-bottom: 0px;
-    }
-
     .comment {
-      @include border-bottom-radius(0);
-      @include border-left-radius(0);
-      @include border-right-radius(0);
-      @include border-top-radius(0);
-      border-left: 0px;
-      border-right: 0px;
-
       .details {
         @include clearfix();
 
