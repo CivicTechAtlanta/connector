@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/about' => 'welcome#about'
   root 'welcome#index'
 
-  resources :projects
+  resources :projects do
+    resources :comments, only: [:create]
+  end
   resources :people
 end

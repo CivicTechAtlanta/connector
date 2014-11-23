@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = project
+    @comments = @project.comments.order(created_at: :asc)
   end
 
   def new

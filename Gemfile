@@ -9,6 +9,9 @@ gem 'rails', '4.1.1'
 # Database
 gem 'pg'
 
+# Model
+gem 'acts_as_commentable'
+
 # Login
 gem 'devise'
 gem 'omniauth-facebook'
