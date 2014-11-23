@@ -1,13 +1,45 @@
-- if current_user && @project.people.include?(current_user)
-  = link_to "Edit Project", edit_project_path
-.row
-  .col-sm-8
-    h1 = @project.name
-    .well
-      div = @project.description
-  .col-sm-4
-    h4 Contributors
-    .well
-      ul
-        - @project.people.each do |p|
-          li = link_to p.name, p
+#project
+  - if current_user && @project.people.include?(current_user)
+    = link_to "Edit Project", edit_project_path
+  .row
+    .col-sm-8
+      h1 = @project.name.titlecase
+      .well
+        p = @project.description
+
+        - if @project.url.present?
+          p
+            ' Check out our project at
+            = link_to @project.url, @project.url, target: '_blank'
+    .col-sm-4
+      h4 Contributors
+      .well
+        ul
+          - @project.people.each do |p|
+            li = link_to p.name, p
+
+  .row
+    .col-sm-8
+      .panel.panel-default.comment-wrapper
+        .panel-heading
+          h3.panel-title Discussion
+        .panel-body
+          ul.list-group
+            - @comments.each do |comment|
+              li.list-group-item.comment
+                .details
+                  .date = comment.created_at.to_s(:comment)
+                  - if comment.name
+                    .who
+                      ' &nbsp;by
+                      = link_to comment.name, comment.user.person
+                  - else
+                    .who &nbsp;by anonymous
+
+                .content = comment.comment
+            li.list-group-item.comment
+              form action=project_comments_path(@project)
+                .form-group
+                  textarea.form-control placeholder="Comment" name="comment" required=true
+                .form-group
+                  button.btn.btn-primary Leave a Comment

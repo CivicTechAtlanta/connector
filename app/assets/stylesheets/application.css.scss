@@ -47,6 +47,10 @@ html, body {
   }
 }
 
+.well {
+  @include box-shadow(none);
+}
+
 .jumbotron.welcome {
   background: url(image_path('midtown.jpg'));
   background-position-y: -200px;
@@ -125,6 +129,54 @@ html, body {
       @extend .label-success;
 
       float: right;
+    }
+  }
+}
+
+#project {
+  .row {
+    margin-bottom: 20px;
+  }
+
+  .comment-wrapper {
+    border-bottom: 0px;
+
+    .panel-body {
+      padding: 0px;
+
+      .list-group {
+        margin: 0px;
+      }
+    }
+
+    .panel-heading {
+      border-bottom: 0px;
+    }
+
+    .comment {
+      @include border-bottom-radius(0);
+      @include border-left-radius(0);
+      @include border-right-radius(0);
+      @include border-top-radius(0);
+      border-left: 0px;
+      border-right: 0px;
+
+      .details {
+        @include clearfix();
+
+        font-size: 0.8em;
+        font-style: italic;
+
+        margin-bottom: 7px;
+
+        .date {
+          float: left;
+        }
+
+        .who {
+          float: left;
+        }
+      }
     }
   }
 }

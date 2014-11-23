@@ -18,8 +18,8 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the projects" do
       get :index
-      expect(response.body).to include(project1.name, project1.description.first(50))
-      expect(response.body).to include(project2.name, project2.description.first(50))
+      expect(response.body).to include(project1.name.titlecase, project1.description.first(50))
+      expect(response.body).to include(project2.name.titlecase, project2.description.first(50))
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the project" do
       get :show, id: project1.id
-      expect(response.body).to include(project1.name)
+      expect(response.body).to include(project1.name.titlecase)
       expect(response.body).to include(project1.description)
     end
 
