@@ -194,4 +194,49 @@ RSpec.describe ProjectsController, :type => :controller do
       end
     end
   end
+
+  describe "GET contribute" do
+    before(:each) { sign_in(user) }
+
+    it "adds me as a contributor" do
+      expect {
+        get :contribute, id: project1.id
+      }.to change{ project1.people.include?(user.person) }.from(false).to(true)
+    end
+
+    it "redirects to the project" do
+      get :contribute, id: project1.id
+      expect(response).to redirect_to(project_path(project1))
+    end
+
+    it "can't add me twice" do
+      project1.people << user.person
+      expect {
+        get :contribute, id: project1.id
+      }.not_to change{ project1.people.include?(user.person) }.from(true)
+    end
+  end
+
+  describe "GET uncontribute" do
+    before(:each) { sign_in(user) }
+    before(:each) { project1.people << user.person }
+
+    it "remove me as a contributor" do
+      expect {
+        get :uncontribute, id: project1.id
+      }.to change{ project1.people.include?(user.person) }.from(true).to(false)
+    end
+
+    it "redirects to the project" do
+      get :uncontribute, id: project1.id
+      expect(response).to redirect_to(project_path(project1))
+    end
+
+    it "can't remove me twice" do
+      project1.people.delete(user.person)
+      expect {
+        get :uncontribute, id: project1.id
+      }.not_to change{ project1.people.include?(user.person) }.from(false)
+    end
+  end
 end

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :projects do
+    member do
+      get :contribute
+      get :uncontribute
+    end
+
     resources :comments, only: [:create]
   end
   resources :people

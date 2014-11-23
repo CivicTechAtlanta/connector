@@ -48,6 +48,16 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def contribute
+    project.people << current_person unless project.people.include?(current_person)
+    redirect_to project, notice: "You are now listed as a contributor"
+  end
+
+  def uncontribute
+    project.people.delete(current_person) if project.people.include?(current_person)
+    redirect_to project, notice: "You are no longer listed as a contributor"
+  end
+
   private
 
   def projects
