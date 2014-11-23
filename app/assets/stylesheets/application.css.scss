@@ -27,6 +27,12 @@ html, body {
 }
 
 .navbar-brand {
+  img {
+    position: absolute;
+    height: $navbar-height * 0.75;
+    top: $navbar-height * 0.25 / 2;
+  }
+
   font-size: 34px;
 }
 
