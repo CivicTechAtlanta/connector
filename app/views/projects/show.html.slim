@@ -61,7 +61,7 @@
                 = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
                   | I no longer want to be listed as a contributor
               - else
-                = link_to contribute_project_path(@project), class: "btn btn-primary btn-block" do
+                = link_to contribute_project_path(@project), class: "btn btn-success btn-block" do
                   | List me as a contributor!
             - else
               = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
