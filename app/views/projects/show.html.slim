@@ -38,8 +38,12 @@
 
                 .content = comment.comment
             li.list-group-item.comment
-              form action=project_comments_path(@project)
+              = form_tag project_comments_path(@project) do
                 .form-group
                   textarea.form-control placeholder="Comment" name="comment" required=true
                 .form-group
-                  button.btn.btn-primary Leave a Comment
+                  button.btn.btn-primary
+                    - if current_person
+                      ' Leave a Comment (as #{current_person.name})
+                    - else
+                      ' Leave a Comment (as anonymous)
