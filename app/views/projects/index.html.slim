@@ -1,15 +1,19 @@
-h2 Projects
-- if current_user
-  = link_to "Create Project", new_project_path
+#project-list
+  .row.title
+    .col-sm-12
+      h2
+        .pull-left
+          ' Projects
+        - if current_user
+          .pull-right
+            = link_to "Create Project", new_project_path, class: "btn btn-primary"
+  .row
+    .well.col-sm-4
 
-table.table
-  thead: tr
-    td Name
-    td Description
-    td
-  tbody
-    - @projects.each do |project|
-      tr
-        td = project.name
-        td = truncate(project.description, length: 150, omission: " --More--")
-        td = link_to "View", project, class: "btn btn-primary"
+    .col-sm-8
+      ul.list-group
+        - @projects.each do |project|
+          = link_to project, class: "list-group-item project" do
+            .contributors #{project.people.count} contributors
+            .name = project.name.titlecase
+            .description = truncate(project.description, length: 300, omission: "...")

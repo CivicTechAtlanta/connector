@@ -10,13 +10,20 @@ $navbar-inverse-link-color: #FFFFFF;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 body {
-  margin-top: $navbar-height;
+  margin-top: $navbar-height + 20px;
+
+  &.static {
+    margin-top: $navbar-height;
+  }
 }
+
 
 html, body {
   overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .navbar-brand {
@@ -49,6 +56,14 @@ html, body {
 
     .brigade-logo img {
       width: 125px;
+    }
+  }
+
+  form {
+    margin-bottom: 15px;
+
+    input {
+      margin-right: 15px;
     }
   }
 }
@@ -87,5 +102,29 @@ html, body {
 .alert {
   &.no-margin {
     margin-bottom: 0px;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+#project-list {
+  .project {
+    .name {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .description {
+      font-size: 0.9em;
+    }
+
+    .contributors {
+      @extend .label;
+      @extend .label-success;
+
+      float: right;
+    }
   }
 }

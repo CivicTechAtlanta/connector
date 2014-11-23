@@ -10,8 +10,4 @@ html
       div.alert.no-margin role="alert" class="alert-#{key}"
         = value
     = yield
-    footer
-      hr
-      .row
-        .col-sm-8.col-sm-offset-2
-          .pull-right &copy; 2014 Code for Atlanta
+    = render 'layouts/footer'

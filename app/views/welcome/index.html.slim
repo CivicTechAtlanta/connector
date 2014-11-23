@@ -2,8 +2,10 @@
   .container
     .well.col-sm-8.col-sm-offset-2
       p This is a template for the Code for Atlanta event tracking app. Add copy here. I'm not quite sure what to put and I am not good at copy. Now I am just trying to fill space.
-      p
-        a.btn.btn-primary.btn-lg.pull-left href="/welcome/about" role="button"  Get Started, Make a Change &raquo;
+      div
+        .pull-left: form#mc-embedded-subscribe-form.form-inline action="http://codeforatlanta.us6.list-manage.com/subscribe/post?u=0cf233d236b57d728b10baea3&amp;id=2939763211" method="post" name="mc-embedded-subscribe-form" novalidate="" role="form" target="_blank"
+          input#mce-EMAIL.form-control name="EMAIL" placeholder=("Your email address") style="width:250px;" type="email" value="" /
+          input#mc-embedded-subscribe.btn.btn-primary name="subscribe" type="submit" value=("Get Updates") /
         .pull-right.brigade-logo = image_tag "brigade.png"
 .container
   .row

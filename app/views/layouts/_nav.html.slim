@@ -9,8 +9,8 @@
       a.navbar-brand href="/" Code for ATL
     .navbar-collapse.collapse.pull-right
       ul.nav.navbar-nav
-        li: a href="/welcome/about"  Projects
-        li: a href="/welcome/about"  About Us
+        li: a href=projects_path  Projects
+        li: a href=about_path  About Us
         li
           - if user_signed_in?
             = link_to "Logout", destroy_user_session_path
