@@ -2,55 +2,64 @@
   - if current_user && @project.people.include?(current_user)
     = link_to "Edit Project", edit_project_path
   .row
+    / The left hand column
+    / It is needed this way to prevent columns from aligning weirdly
     .col-sm-8
-      h1 = @project.name.titlecase
-      .well
-        p = @project.description
+      .row
+        .col-sm-12
+          h1 = @project.name.titlecase
+          .well
+            p = @project.description
 
-        - if @project.url.present?
-          p
-            ' Check out our project at
-            = link_to @project.url, @project.url, target: '_blank'
+            - if @project.url.present?
+              p
+                ' Check out our project at
+                = link_to @project.url, @project.url, target: '_blank'
+      .row
+        .col-sm-12
+          .panel.panel-default.comment-wrapper
+            .panel-heading
+              h3.panel-title Discussion
+            .panel-body
+              ul.list-group
+                - @comments.each do |comment|
+                  li.list-group-item.comment
+                    .details
+                      .date = comment.created_at.to_s(:comment)
+                      - if comment.name
+                        .who
+                          ' &nbsp;by
+                          = link_to comment.name, comment.user.person
+                      - else
+                        .who &nbsp;by anonymous
+
+                    .content = comment.comment
+                li.list-group-item.comment
+                  = form_tag project_comments_path(@project) do
+                    .form-group
+                      textarea.form-control placeholder="Comment" name="comment" required=true
+                    .form-group
+                      button.btn.btn-primary
+                        - if current_person
+                          ' Leave a Comment (as #{current_person.name})
+                        - else
+                          ' Leave a Comment (as anonymous)
+
+
+    / The right hand column
     .col-sm-4
-      h4 Contributors
-      .well
-        ul
-          - @project.people.each do |person|
-            li = link_to person.name, person
-      .contribute-actions
-        - if @project.people.include?(current_person)
-          = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
-            | I no longer want to be listed as a contributor
-        - else
-          = link_to contribute_project_path(@project), class: "btn btn-primary btn-block" do
-            | List me as a contributor!
+      .row
+        .col-sm-12
+          h4 Contributors
+          .well
+            ul
+              - @project.people.each do |person|
+                li = link_to person.name, person
+          .contribute-actions
+            - if @project.people.include?(current_person)
+              = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
+                | I no longer want to be listed as a contributor
+            - else
+              = link_to contribute_project_path(@project), class: "btn btn-primary btn-block" do
+                | List me as a contributor!
 
-  .row
-    .col-sm-8
-      .panel.panel-default.comment-wrapper
-        .panel-heading
-          h3.panel-title Discussion
-        .panel-body
-          ul.list-group
-            - @comments.each do |comment|
-              li.list-group-item.comment
-                .details
-                  .date = comment.created_at.to_s(:comment)
-                  - if comment.name
-                    .who
-                      ' &nbsp;by
-                      = link_to comment.name, comment.user.person
-                  - else
-                    .who &nbsp;by anonymous
-
-                .content = comment.comment
-            li.list-group-item.comment
-              = form_tag project_comments_path(@project) do
-                .form-group
-                  textarea.form-control placeholder="Comment" name="comment" required=true
-                .form-group
-                  button.btn.btn-primary
-                    - if current_person
-                      ' Leave a Comment (as #{current_person.name})
-                    - else
-                      ' Leave a Comment (as anonymous)
