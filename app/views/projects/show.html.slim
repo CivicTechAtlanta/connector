@@ -56,10 +56,13 @@
               - @project.people.each do |person|
                 li = link_to person.name, person
           .contribute-actions
-            - if @project.people.include?(current_person)
-              = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
-                | I no longer want to be listed as a contributor
+            - if current_person
+              - if @project.people.include?(current_person)
+                = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
+                  | I no longer want to be listed as a contributor
+              - else
+                = link_to contribute_project_path(@project), class: "btn btn-primary btn-block" do
+                  | List me as a contributor!
             - else
-              = link_to contribute_project_path(@project), class: "btn btn-primary btn-block" do
-                | List me as a contributor!
-
+              = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
+                ' Login to be listed as a contributor
