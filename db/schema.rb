@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20141124020236) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.json     "urls"
+    t.json     "urls",        default: []
   end
 
   create_table "users", force: true do |t|
