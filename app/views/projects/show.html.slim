@@ -8,16 +8,17 @@
       .row
         .col-sm-12
           h1 = @project.name.titlecase
-          .well
-            p = @project.description
+          .panel.panel-primary
+            .panel-body
+              p = @project.description
 
-            - if @project.url.present?
-              p
-                ' Check out our project at
-                = link_to @project.url, @project.url, target: '_blank'
+              - if @project.url.present?
+                p
+                  ' Check out our project at
+                  = link_to @project.url, @project.url, target: '_blank'
       .row
         .col-sm-12
-          .panel.panel-default.comment-wrapper.has-list
+          .panel.panel-primary.comment-wrapper.has-list
             .panel-heading
               h3.panel-title Discussion
             .panel-body
@@ -28,7 +29,7 @@
     .col-sm-4
       .row
         .col-sm-12
-          .panel.panel-primary.has-list
+          .panel.panel-default.has-list
             .panel-heading
               h3.panel-title Contributors
             .panel-body
