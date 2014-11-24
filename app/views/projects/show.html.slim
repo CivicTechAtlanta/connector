@@ -8,14 +8,9 @@
       .row
         .col-sm-12
           h1 = @project.name.titlecase
-          .panel.panel-primary
+          .panel.panel-primary.project-content
             .panel-body
               p = @project.description
-
-              - if @project.url.present?
-                p
-                  ' Check out our project at
-                  = link_to @project.url, @project.url, target: '_blank'
       .row
         .col-sm-12
           .panel.panel-primary.comment-wrapper.has-list
@@ -29,6 +24,14 @@
     .col-sm-4
       .row
         .col-sm-12
+          - if @project.urls.any?
+            .panel.panel-default.has-list
+              .panel-heading
+                h3.panel-title External Project Links
+              .panel-body
+                ul.list-group
+                  - @project.urls.each do |type, url|
+                    = link_to type.titlecase, url, class: "list-group-item", target: "_blank"
           .panel.panel-default.has-list
             .panel-heading
               h3.panel-title Contributors
