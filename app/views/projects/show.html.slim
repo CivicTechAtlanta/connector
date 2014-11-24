@@ -1,5 +1,5 @@
 #project
-  - if current_user && @project.people.include?(current_user)
+  - if current_user && @project.people.include?(current_person)
     = link_to "Edit Project", edit_project_path
   .row
     / The left hand column

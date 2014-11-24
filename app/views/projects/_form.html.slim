@@ -1,10 +1,30 @@
-= form_for @project do |f|
+= form_for @project, html: { class: "project-form" } do |f|
   .form-group
-    =f.label :name, "Name"
-    =f.text_field :name, class: "form-control"
+    = f.label :name, "What is the name of your project?"
+    = f.text_field :name, class: "form-control"
 
   .form-group
-    =f.label :description, "Description"
-    =f.text_area :description, class: "form-control"
+    = f.label :description, "Provide as much description as you think is necessary"
+    = f.text_area :description, class: "form-control"
 
-  =f.submit class: "btn btn-primary"
+  .form-group
+    = f.label :urls, "External Resource Links"
+    - @project.urls.each do |type, url|
+      .row
+        .col-sm-1
+          button.btn.btn-danger.remove type="button": i.fa.fa-minus-square
+        .col-sm-3
+          = select_tag "project[url_types][]", options_for_select(Project::URL_TYPES, type), class: "form-control"
+        .col-sm-8 = text_field_tag 'project[urls][]', url, class: "form-control", placeholder: "http://www.example.com", required: true
+    button.btn.btn-primary.new-url type="button"
+      i.fa.fa-plus-square
+      | &nbsp; Additional URL
+
+  = f.submit class: "btn btn-primary"
+
+#url-template.row.hidden
+  .col-sm-1
+    button.btn.btn-danger.remove type="button": i.fa.fa-minus-square
+  .col-sm-3
+    = select_tag "project[url_types][]", options_for_select(Project::URL_TYPES, "Website"), class: "form-control"
+  .col-sm-8 = text_field_tag 'project[urls][]', '', class: "form-control", placeholder: "http://www.example.com", required: true

@@ -8,6 +8,8 @@ $navbar-inverse-color: #FFFFFF;
 $navbar-inverse-bg: #1B2334;
 $navbar-inverse-link-color: #FFFFFF;
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
@@ -169,6 +171,16 @@ html, body {
   }
 }
 
+.project-form {
+  .row {
+    margin-bottom: 7px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
 #project {
   .row {
     margin-bottom: 20px;
@@ -184,6 +196,13 @@ html, body {
 
   .project-content {
     margin-bottom: 0px;
+
+    p {
+      &:last-of-type {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+    }
   }
 
   .comment-wrapper {

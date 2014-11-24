@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Time zone
 gem 'tzinfo-data'
