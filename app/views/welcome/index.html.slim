@@ -22,9 +22,9 @@
         .col-xs-12.search-container
           .well.clearfix
             span.search-title.text-center Search Projects
-            .col-xs-12: input.form-control type="text"
+            .col-xs-12: input.form-control#searcher type="text"
             .col-xs-12.search-tags
-              span Stuck? Trying searching for
+              span Stuck? Try
               '
               = link_to 'ruby on rails', projects_path(tag: "ruby on rails"), class: "tag"
               ' ,
@@ -45,3 +45,12 @@
           h2 Organizations
           p Find which of your favorite local organizations help out with code for Atlanta.
           p: a.btn.btn-default href="/organizations" role="button"  View details &raquo;
+
+#tags data-tags=@tags
+
+- content_for :bottom_js
+  javascript:
+    $(document).ready(function() {
+      var tags = $("#tags").data("tags");
+      var typeahead = $("#searcher").typeahead({ source: tags });
+    });
