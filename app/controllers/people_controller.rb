@@ -24,10 +24,11 @@ class PeopleController < ApplicationController
   def update
     if person.update(person_params)
       flash[:success] = "Information successfully updated!"
+      redirect_to person
     else
       flash[:danger] = "We're sorry, your information could not be updated. Name and email are required fields."
+      redirect_to edit_person_path
     end
-    redirect_to person
   end
 
   private
