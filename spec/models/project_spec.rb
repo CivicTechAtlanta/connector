@@ -10,12 +10,12 @@ RSpec.describe Project, :type => :model do
     end
 
     it "handles valid urls" do
-      subject.urls = [{ "Code Repository" => Faker::Internet.url }, { "Website" => Faker::Internet.url }]
+      subject.urls = [["Code Repository", Faker::Internet.url], ["Website", Faker::Internet.url]]
       expect(subject).to be_valid
     end
 
     it "handles invalid urls" do
-      subject.urls = [{ "CodeRepository" => Faker::Internet.url }]
+      subject.urls = [["CodeRepository", Faker::Internet.url]]
       expect(subject).not_to be_valid
     end
   end

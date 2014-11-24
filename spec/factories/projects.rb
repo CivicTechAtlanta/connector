@@ -4,12 +4,8 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     urls {
       [
-          {
-              "Code Repository" => Faker::Internet.url
-          },
-          {
-              "Website" => Faker::Internet.url
-          }
+          ["Code Repository", Faker::Internet.url],
+          ["Website", Faker::Internet.url]
       ]
     }
   end
