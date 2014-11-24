@@ -31,6 +31,10 @@ gem 'tzinfo-data'
 # Environment
 gem 'dotenv-rails'
 
+# App server
+gem 'puma'
+gem 'foreman'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry'
