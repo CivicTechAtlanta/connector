@@ -43,11 +43,17 @@
       .row
         .col-sm-12
           ul.list-group
+            - if @tags_used.any?
+              li.list-group-item.clearfix
+                .pull-left Showing categories: #{ @tags_used.join(", ") }
+                .pull-right = link_to "reset search", projects_path
+
             - @projects.each do |project|
               = link_to project, class: "list-group-item project" do
                 .contributors #{project.people.count} contributors
                 .name = project.name.titlecase
                 .description = truncate(project.description, length: 300, omission: "...")
+
             - if @projects.empty?
               li.list-group-item
                 div Sorry, We couldn't find any projects matching your criteria!

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = tagged_projects.order(updated_at: :asc)
     @top_tags = ActsAsTaggableOn::Tag.most_used(10)
+    @tags_used = Array(params[:tag])
   end
 
   def show

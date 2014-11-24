@@ -11,6 +11,12 @@
           .panel.panel-primary.project-content
             .panel-body
               p = @project.description
+              p: small: i
+                - @project.tag_list.each_with_index do |tag, i|
+                  = link_to tag, projects_path(tag: tag)
+                  - if i < @project.tag_list.count - 1
+                    ' ,
+
       .row
         .col-sm-12
           .panel.panel-primary.comment-wrapper.has-list
