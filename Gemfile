@@ -11,6 +11,7 @@ gem 'pg'
 
 # Model
 gem 'acts_as_commentable'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 # Login
 gem 'devise'

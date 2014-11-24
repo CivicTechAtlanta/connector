@@ -21,6 +21,19 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(response.body).to include(project1.name.titlecase, project1.description.first(50))
       expect(response.body).to include(project2.name.titlecase, project2.description.first(50))
     end
+
+    context "with tags" do
+      before(:each) do
+        project1.tag_list.add("test")
+        project1.save!
+      end
+
+      it "lists the project" do
+        get :index, tag: "test"
+        expect(response.body).to include(project1.name.titlecase)
+        expect(response.body).not_to include(project2.name.titlecase)
+      end
+    end
   end
 
   describe "GET 'show'" do

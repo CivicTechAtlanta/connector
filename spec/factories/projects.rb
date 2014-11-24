@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :project do
-    name { Faker::Lorem.word }
+    name { Faker::Lorem.words.join(" ") }
     description { Faker::Lorem.paragraph }
     urls {
       [

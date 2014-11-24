@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   end
 
   acts_as_commentable
+  acts_as_taggable
   has_and_belongs_to_many :people
 
   validates_presence_of :name, :description

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :verify_project_creator, only: [:destroy]
 
   def index
-    @projects = projects.order(updated_at: :asc)
+    @projects = tagged_projects.order(updated_at: :asc)
   end
 
   def show
@@ -61,6 +61,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def tagged_projects
+    params[:tag] ? projects.tagged_with(Array(params[:tag]), :any => true) : projects
+  end
 
   def projects
     Project.all
