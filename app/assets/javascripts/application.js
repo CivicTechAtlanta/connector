@@ -25,6 +25,8 @@ $(".project-form").on("click", ".new-url", function(event) {
   event.preventDefault();
 
   var row = $("#url-template").clone();
+  row.removeClass("hidden");
+  row.find("input").val("");
 
-  $(this).before(row.removeClass("hidden"));
+  $(this).before(row);
 });
