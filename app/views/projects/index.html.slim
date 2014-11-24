@@ -9,27 +9,30 @@
             = link_to "Create Project", new_project_path, class: "btn btn-primary"
   .row
     .col-sm-4
-      .panel.panel-primary class="#{'has-list' if Array(current_person.try!(:projects)).any? }"
-        .panel-heading
-          h3.panel-title Your Projects
-        .panel-body
-          - if current_person
-            - if current_person.projects.any?
-              ul.list-group
-                - current_person.projects.each do |project|
-                  = link_to project, class: "list-group-item" do
-                    span = project.name.titlecase
-            - else
-              p You aren't yet contributing to any projects :(
-              p You should find a project and become a contributor!
-          - else
-            = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
-              ' Login to contribute to projects
-
+      .row
+        .col-sm-12
+          .panel.panel-primary class="#{'has-list' if Array(current_person.try!(:projects)).any? }"
+            .panel-heading
+              h3.panel-title Your Projects
+            .panel-body
+              - if current_person
+                - if current_person.projects.any?
+                  ul.list-group
+                    - current_person.projects.each do |project|
+                      = link_to project, class: "list-group-item" do
+                        span = project.name.titlecase
+                - else
+                  p You aren't yet contributing to any projects :(
+                  p You should find a project and become a contributor!
+              - else
+                = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
+                  ' Login to contribute to projects
     .col-sm-8
-      ul.list-group
-        - @projects.each do |project|
-          = link_to project, class: "list-group-item project" do
-            .contributors #{project.people.count} contributors
-            .name = project.name.titlecase
-            .description = truncate(project.description, length: 300, omission: "...")
+      .row
+        .col-sm-12
+          ul.list-group
+            - @projects.each do |project|
+              = link_to project, class: "list-group-item project" do
+                .contributors #{project.people.count} contributors
+                .name = project.name.titlecase
+                .description = truncate(project.description, length: 300, omission: "...")
