@@ -140,8 +140,6 @@ html, body {
 }
 
 .panel.has-list {
-  border-bottom: 0px;
-
   .panel-heading {
     border-bottom: 0px;
   }
@@ -154,12 +152,19 @@ html, body {
     }
 
     .list-group-item {
-      @include border-bottom-radius(0);
-      @include border-left-radius(0);
-      @include border-right-radius(0);
-      @include border-top-radius(0);
       border-left: 0px;
       border-right: 0px;
+
+      &:not(:last-of-type) {
+        @include border-bottom-radius(0);
+        @include border-left-radius(0);
+        @include border-right-radius(0);
+        @include border-top-radius(0);
+      }
+
+      &:last-of-type {
+        border-bottom: 0px;
+      }
     }
   }
 }

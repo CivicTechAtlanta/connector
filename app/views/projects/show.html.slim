@@ -21,48 +21,28 @@
             .panel-heading
               h3.panel-title Discussion
             .panel-body
-              ul.list-group
-                - @comments.each do |comment|
-                  li.list-group-item.comment
-                    .details
-                      .date = comment.created_at.to_s(:comment)
-                      - if comment.name
-                        .who
-                          ' &nbsp;by
-                          = link_to comment.name, comment.user.person
-                      - else
-                        .who &nbsp;by anonymous
-
-                    .content = comment.comment
-                li.list-group-item.comment
-                  = form_tag project_comments_path(@project) do
-                    .form-group
-                      textarea.form-control placeholder="Comment" name="comment" required=true
-                    .form-group
-                      button.btn.btn-primary
-                        - if current_person
-                          ' Leave a Comment (as #{current_person.name})
-                        - else
-                          ' Leave a Comment (as anonymous)
+              = render 'comments', comments: @comments, project: @project
 
 
     / The right hand column
     .col-sm-4
       .row
         .col-sm-12
-          h4 Contributors
-          .well
-            ul
-              - @project.people.each do |person|
-                li = link_to person.name, person
-          .contribute-actions
-            - if current_person
-              - if @project.people.include?(current_person)
-                = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
-                  | I no longer want to be listed as a contributor
-              - else
-                = link_to contribute_project_path(@project), class: "btn btn-success btn-block" do
-                  | List me as a contributor!
-            - else
-              = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
-                ' Login to be listed as a contributor
+          .panel.panel-primary.has-list
+            .panel-heading
+              h3.panel-title Contributors
+            .panel-body
+              ul.list-group
+                - @project.people.each do |person|
+                  = link_to person.name, person, class: "list-group-item"
+                .contribute-actions.list-group-item
+                  - if current_person
+                    - if @project.people.include?(current_person)
+                      = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
+                        | I no longer want to be listed as a contributor
+                    - else
+                      = link_to contribute_project_path(@project), class: "btn btn-success btn-block" do
+                        | List me as a contributor!
+                  - else
+                    = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
+                      ' Login to be listed as a contributor
