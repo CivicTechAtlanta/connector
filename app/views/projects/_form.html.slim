@@ -1,14 +1,14 @@
 = form_for @project, html: { class: "project-form" } do |f|
   .form-group
     = f.label :name, "What is the name of your project?"
-    = f.text_field :name, class: "form-control"
+    = f.text_field :name, class: "form-control", required: true
 
   .form-group
     = f.label :description, "Provide as much description as you think is necessary"
-    = f.text_area :description, class: "form-control"
+    = f.text_area :description, class: "form-control", required: true
 
   .form-group
-    = f.label :urls, "External Resource Links"
+    div = f.label :urls, "External Resource Links"
     - @project.urls.each do |type, url|
       .row
         .col-sm-1

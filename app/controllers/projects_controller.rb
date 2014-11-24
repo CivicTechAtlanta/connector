@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.merge(urls: construct_urls))
     if @project.save
       @project.people << current_user.person
       redirect_to @project

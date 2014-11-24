@@ -75,13 +75,19 @@ RSpec.describe ProjectsController, :type => :controller do
     end
 
     context "when the user is logged in" do
+      before(:each) { sign_in(user) }
+
       it "works" do
-        sign_in user
         expect {
           post :create, project: {name: "Test", description: "Testing description."}
         }.to change{ Project.count }.by(1)
         expect(Project.last.people.first).to eq(user.person)
         expect(response).to redirect_to Project.last
+      end
+
+      it "can set the urls properly" do
+        post :create, project: { name: "Test", description: "Testing description.", url_types: ["Code Repository", "Website"], urls: ["1", "2"] }
+        expect(Project.last.urls).to eq([["Code Repository", "1"], ["Website", "2"]])
       end
     end
   end
