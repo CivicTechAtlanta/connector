@@ -5,8 +5,16 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
+  get '/about' => 'welcome#about'
   root 'welcome#index'
 
-  resources :projects
+  resources :projects do
+    member do
+      get :contribute
+      get :uncontribute
+    end
+
+    resources :comments, only: [:create]
+  end
   resources :people
 end

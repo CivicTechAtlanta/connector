@@ -1,0 +1,23 @@
+ul.list-group
+  - comments.each do |comment|
+    li.list-group-item.comment
+      .details
+        .date = comment.created_at.to_s(:comment)
+        - if comment.name
+          .who
+            ' &nbsp;by
+            = link_to comment.name, comment.user.person
+        - else
+          .who &nbsp;by anonymous
+
+      .content = comment.comment
+  li.list-group-item.comment
+    = form_tag project_comments_path(project) do
+      .form-group
+        textarea.form-control placeholder="Comment" name="comment" required=true
+      .form-group
+        button.btn.btn-primary
+          - if current_person
+            ' Leave a Comment (as #{current_person.name})
+          - else
+            ' Leave a Comment (as anonymous)

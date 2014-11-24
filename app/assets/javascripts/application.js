@@ -13,5 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require bootstrap-modal
 //= require_tree .
+
+$(".project-form").on("click", ".remove", function(event) {
+  event.preventDefault();
+
+  $(this).closest(".row").remove();
+});
+
+$(".project-form").on("click", ".new-url", function(event) {
+  event.preventDefault();
+
+  var row = $("#url-template").clone();
+  row.removeClass("hidden");
+  row.find("input").val("");
+
+  $(this).before(row);
+});

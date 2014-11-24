@@ -1,13 +1,58 @@
-- if current_user && @project.people.include?(current_user)
-  = link_to "Edit Project", edit_project_path
-.row
-  .col-sm-8
-    h1 = @project.name
-    .well
-      div = @project.description
-  .col-sm-4
-    h4 Contributors
-    .well
-      ul
-        - @project.people.each do |p|
-          li = link_to p.name, p
+#project
+  - if current_user && @project.people.include?(current_person)
+    = link_to "Edit Project", edit_project_path
+  .row
+    / The left hand column
+    / It is needed this way to prevent columns from aligning weirdly
+    .col-sm-8
+      .row
+        .col-sm-12
+          h1 = @project.name.titlecase
+          .panel.panel-primary.project-content
+            .panel-body
+              p = @project.description
+              p: small: i
+                - @project.tag_list.each_with_index do |tag, i|
+                  = link_to tag, projects_path(tag: tag)
+                  - if i < @project.tag_list.count - 1
+                    ' ,
+
+      .row
+        .col-sm-12
+          .panel.panel-primary.comment-wrapper.has-list
+            .panel-heading
+              h3.panel-title Discussion
+            .panel-body
+              = render 'comments', comments: @comments, project: @project
+
+
+    / The right hand column
+    .col-sm-4
+      .row
+        .col-sm-12
+          - if @project.urls.any?
+            .panel.panel-default.has-list
+              .panel-heading
+                h3.panel-title External Project Links
+              .panel-body
+                ul.list-group
+                  - @project.urls.each do |type, url|
+                    = link_to type.titlecase, url, class: "list-group-item", target: "_blank"
+          .panel.panel-default.has-list
+            .panel-heading
+              h3.panel-title Contributors
+            .panel-body
+              ul.list-group
+                - @project.people.each do |person|
+                  = link_to person.name, person, class: "list-group-item"
+                .contribute-actions.list-group-item
+                  - if current_person
+                    - if @project.people.include?(current_person)
+                      = link_to uncontribute_project_path(@project), class: "btn btn-danger btn-block" do
+                        | I no longer want to be listed as a contributor
+                    - else
+                      = link_to contribute_project_path(@project), class: "btn btn-success btn-block" do
+                        | List me as a contributor!
+                  - else
+                    = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
+                      ' Login to be listed as a contributor

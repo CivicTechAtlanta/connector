@@ -9,6 +9,10 @@ gem 'rails', '4.1.1'
 # Database
 gem 'pg'
 
+# Model
+gem 'acts_as_commentable'
+gem 'acts-as-taggable-on', '~> 3.4'
+
 # Login
 gem 'devise'
 gem 'omniauth-facebook'
@@ -19,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Time zone
 gem 'tzinfo-data'

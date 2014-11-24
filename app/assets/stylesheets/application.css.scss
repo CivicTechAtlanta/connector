@@ -1,9 +1,228 @@
 /*
  *= require_tree .
  */
+
+$navbar-height: 100px;
+$navbar-inverse-brand-color: #FFFFFF;
+$navbar-inverse-color: #FFFFFF;
+$navbar-inverse-bg: #1B2334;
+$navbar-inverse-link-color: #FFFFFF;
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
-body:not(.static) {
+body {
   margin-top: $navbar-height + 20px;
+
+  &.static {
+    margin-top: $navbar-height;
+  }
+}
+
+
+html, body {
+  overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-brand {
+  img {
+    position: absolute;
+    height: $navbar-height * 0.75;
+    top: $navbar-height * 0.25 / 2;
+  }
+
+  font-size: 34px;
+}
+
+.navbar-nav > li > a {
+  font-size: 20px;
+}
+
+.navbar-collapse {
+  width: 50%;
+
+  .nav.navbar-nav {
+    width: 100%;
+
+    li {
+      @extend .text-center;
+      width: 30%;
+    }
+  }
+}
+
+.well {
+  @include box-shadow(none);
+}
+
+.jumbotron.welcome {
+  background: url(image_path('midtown.jpg'));
+  background-position-y: -200px;
+
+  .well {
+    background: rgba(255,255,255,.8);
+
+    .brigade-logo img {
+      width: 125px;
+    }
+  }
+
+  form {
+    margin-bottom: 15px;
+
+    input {
+      margin-right: 15px;
+    }
+  }
+}
+
+.search-title {
+  font-size: 1.4em;
+  display: block;
+}
+
+.search-container {
+  .hexagon {
+    height: 35px;
+  }
+
+  input {
+    height: 35px;
+  }
+
+  a.tag {
+    cursor: pointer;
+  }
+
+  .search-tags {
+    padding-top: 10px;
+  }
+}
+
+.well {
+  margin-bottom: 0px;
+}
+
+.alert-notice {
+  @extend .alert-warning;
+}
+
+.alert {
+  &.no-margin {
+    margin-bottom: 0px;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+#project-list {
+  .project {
+    .name {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .description {
+      font-size: 0.9em;
+    }
+
+    .contributors {
+      @extend .label;
+      @extend .label-success;
+
+      float: right;
+    }
+  }
+}
+
+.panel.has-list {
+  .panel-heading {
+    border-bottom: 0px;
+  }
+
+  .panel-body {
+    padding: 0px;
+
+    .list-group {
+      margin: 0px;
+    }
+
+    .list-group-item {
+      border-left: 0px;
+      border-right: 0px;
+      @include border-top-radius(0);
+
+      &:not(:last-of-type) {
+        @include border-bottom-radius(0);
+        @include border-left-radius(0);
+        @include border-right-radius(0);
+      }
+
+      &:last-of-type {
+        border-bottom: 0px;
+      }
+    }
+  }
+}
+
+.project-form {
+  .row {
+    margin-bottom: 7px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
+#project {
+  .row {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    margin-top: 0px;
+  }
+
+  .contribute-actions {
+    padding: 15px;
+  }
+
+  .project-content {
+    margin-bottom: 0px;
+
+    p {
+      &:last-of-type {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+    }
+  }
+
+  .comment-wrapper {
+    .comment {
+      .details {
+        @include clearfix();
+
+        font-size: 0.8em;
+        font-style: italic;
+
+        margin-bottom: 7px;
+
+        .date {
+          float: left;
+        }
+
+        .who {
+          float: left;
+        }
+      }
+    }
+  }
 }

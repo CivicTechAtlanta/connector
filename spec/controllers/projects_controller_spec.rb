@@ -18,8 +18,21 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the projects" do
       get :index
-      expect(response.body).to include(project1.name, project1.description.first(50))
-      expect(response.body).to include(project2.name, project2.description.first(50))
+      expect(response.body).to include(project1.name.titlecase, project1.description.first(50))
+      expect(response.body).to include(project2.name.titlecase, project2.description.first(50))
+    end
+
+    context "with tags" do
+      before(:each) do
+        project1.tag_list.add("test")
+        project1.save!
+      end
+
+      it "lists the project" do
+        get :index, tag: "test"
+        expect(response.body).to include(project1.name.titlecase)
+        expect(response.body).not_to include(project2.name.titlecase)
+      end
     end
   end
 
@@ -37,7 +50,7 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the project" do
       get :show, id: project1.id
-      expect(response.body).to include(project1.name)
+      expect(response.body).to include(project1.name.titlecase)
       expect(response.body).to include(project1.description)
     end
 
@@ -75,13 +88,25 @@ RSpec.describe ProjectsController, :type => :controller do
     end
 
     context "when the user is logged in" do
+      before(:each) { sign_in(user) }
+
       it "works" do
-        sign_in user
         expect {
           post :create, project: {name: "Test", description: "Testing description."}
         }.to change{ Project.count }.by(1)
         expect(Project.last.people.first).to eq(user.person)
         expect(response).to redirect_to Project.last
+      end
+
+      it "can set the urls properly" do
+        post :create, project: { name: "Test", description: "Testing description.", url_types: ["Code Repository", "Website"], urls: ["1", "2"] }
+        expect(Project.last.urls).to eq([["Code Repository", "1"], ["Website", "2"]])
+      end
+
+      it "can set tags" do
+        post :create, project: { name: "Test", description: "X", tag_list: "hi, test" }
+        expect(Project.last.tags.count).to eq(2)
+        expect(Project.last.tag_list).to match_array(["hi", "test"])
       end
     end
   end
@@ -143,12 +168,20 @@ RSpec.describe ProjectsController, :type => :controller do
     end
 
     context "when the user is a member of that project" do
+      before(:each) { sign_in(user) }
+
       it "updates a project" do
-        sign_in user
         post :update, id: project1.id, project: project_params
         project1.reload
         expect(project1.name).to eq("tester")
         expect(project1.description).to eq("testing123")
+      end
+
+      it "can set the urls properly" do
+        project1.update!(urls: [])
+        expect {
+          post :update, id: project1.id, project: { url_types: ["Code Repository", "Website"], urls: ["1", "2"] }
+        }.to change{ project1.reload.urls }.from([]).to([["Code Repository", "1"], ["Website", "2"]])
       end
     end
   end
@@ -192,6 +225,51 @@ RSpec.describe ProjectsController, :type => :controller do
         }.to change(Project, :count).by(-1)
         expect(response).to redirect_to projects_path
       end
+    end
+  end
+
+  describe "GET contribute" do
+    before(:each) { sign_in(user) }
+
+    it "adds me as a contributor" do
+      expect {
+        get :contribute, id: project1.id
+      }.to change{ project1.people.include?(user.person) }.from(false).to(true)
+    end
+
+    it "redirects to the project" do
+      get :contribute, id: project1.id
+      expect(response).to redirect_to(project_path(project1))
+    end
+
+    it "can't add me twice" do
+      project1.people << user.person
+      expect {
+        get :contribute, id: project1.id
+      }.not_to change{ project1.people.include?(user.person) }.from(true)
+    end
+  end
+
+  describe "GET uncontribute" do
+    before(:each) { sign_in(user) }
+    before(:each) { project1.people << user.person }
+
+    it "remove me as a contributor" do
+      expect {
+        get :uncontribute, id: project1.id
+      }.to change{ project1.people.include?(user.person) }.from(true).to(false)
+    end
+
+    it "redirects to the project" do
+      get :uncontribute, id: project1.id
+      expect(response).to redirect_to(project_path(project1))
+    end
+
+    it "can't remove me twice" do
+      project1.people.delete(user.person)
+      expect {
+        get :uncontribute, id: project1.id
+      }.not_to change{ project1.people.include?(user.person) }.from(false)
     end
   end
 end

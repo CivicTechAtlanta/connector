@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if user.persisted?
       sign_in_and_redirect(user, event: :authentication)
-      flash[:success] = "Welcome!" if is_navigational_format?
+      flash[:success] = "Welcome! Check out our projects and get involved!"
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       flash[:danger] = "We're sorry, but we couldn't log you in."

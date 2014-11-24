@@ -7,13 +7,7 @@ html
   body.static
     = render "layouts/nav"
     - flash.each do |key, value|
-      div role="alert" class="alert alert-#{key}"
+      div.alert.no-margin role="alert" class="alert-#{key}"
         = value
     = yield
-    footer
-      hr
-      p &copy; 2014 Code for Atlanta
-      - if user_signed_in?
-        = link_to "Logout", destroy_user_session_path
-      - else
-        = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+    = render 'layouts/footer'

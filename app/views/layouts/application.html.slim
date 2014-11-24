@@ -6,11 +6,9 @@ html
     = csrf_meta_tags
   body
     = render "layouts/nav"
-    - flash.each do |key, value|
-      div role="alert" class="alert alert-#{key}"
-        = value
     .container
+      - flash.each do |key, value|
+        div role="alert" class="alert alert-#{key}"
+          = value
       = yield
-    footer
-      hr
-      p &copy; 2014 Code for Atlanta
+    = render 'layouts/footer'

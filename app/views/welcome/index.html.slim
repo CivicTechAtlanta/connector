@@ -1,0 +1,57 @@
+.jumbotron.welcome
+  .container
+    .well.col-sm-8.col-sm-offset-2
+      p This is a template for the Code for Atlanta event tracking app. Add copy here. I'm not quite sure what to put and I am not good at copy. Now I am just trying to fill space.
+      div
+        .pull-left: form#mc-embedded-subscribe-form.form-inline action="http://codeforatlanta.us6.list-manage.com/subscribe/post?u=0cf233d236b57d728b10baea3&amp;id=2939763211" method="post" name="mc-embedded-subscribe-form" novalidate="" role="form" target="_blank"
+          input#mce-EMAIL.form-control name="EMAIL" placeholder=("Your email address") style="width:250px;" type="email" value="" /
+          input#mc-embedded-subscribe.btn.btn-primary name="subscribe" type="submit" value=("Get Updates") /
+        .pull-right.brigade-logo = image_tag "brigade.png"
+.container
+  .row
+    .col-sm-3.col-sm-offset-1
+      .row
+        .col-sm-12
+          .panel.panel-primary
+            .panel-heading
+              h2.panel-title Join us on Meetup!
+            .panel-body
+              iframe frameborder="0" height="440" src="http://meetu.ps/2DWfpk" width="225"
+    .col-sm-8
+      .row
+        .col-xs-12.search-container
+          .well.clearfix
+            = form_tag projects_path, method: :get do
+              span.search-title.text-center Search Projects
+              .col-xs-12: input.form-control#searcher type="text" name="tag"
+            .col-xs-12.search-tags
+              span Stuck? Try
+              '
+              = link_to 'ruby on rails', projects_path(tag: "ruby on rails"), class: "tag"
+              ' ,
+              = link_to 'crime', projects_path(tag: "crime"), class: "tag"
+              ' ,
+              = link_to 'food', projects_path(tag: "food"), class: "tag"
+
+      /.row
+        .col-md-4
+          h2 Topics
+          p Wondering what Code for Atlanta is up to? Wanna find a project to contribute to? Click the button below!
+          p: a.btn.btn-default href="/projects" role="button"  View details &raquo;
+        .col-md-4
+          h2 Events
+          p Code for Atlanta is always adding new events for people of all skill levels. Hackathons and meetups can be found by clicking below.
+          p: a.btn.btn-default href="#" role="button"  View details &raquo;
+        .col-md-4
+          h2 Organizations
+          p Find which of your favorite local organizations help out with code for Atlanta.
+          p: a.btn.btn-default href="/organizations" role="button"  View details &raquo;
+
+#tags data-tags=@tags
+
+- content_for :bottom_js
+  javascript:
+    $(document).ready(function() {
+      var tags = $("#tags").data("tags");
+      var typeahead = $("#searcher").typeahead({ source: tags });
+    });
