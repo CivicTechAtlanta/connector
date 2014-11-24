@@ -17,6 +17,6 @@ class Project < ActiveRecord::Base
   validates_with UrlsValidator
 
   def urls
-    (super || []).map{ |url_hash| url_hash.first.to_a }
+    super || []
   end
 end

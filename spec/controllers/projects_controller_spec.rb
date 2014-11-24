@@ -143,12 +143,20 @@ RSpec.describe ProjectsController, :type => :controller do
     end
 
     context "when the user is a member of that project" do
+      before(:each) { sign_in(user) }
+
       it "updates a project" do
-        sign_in user
         post :update, id: project1.id, project: project_params
         project1.reload
         expect(project1.name).to eq("tester")
         expect(project1.description).to eq("testing123")
+      end
+
+      it "can set the urls properly" do
+        project1.update!(urls: [])
+        expect {
+          post :update, id: project1.id, project: { url_types: ["Code Repository", "Website"], urls: ["1", "2"] }
+        }.to change{ project1.reload.urls }.from([]).to([["Code Repository", "1"], ["Website", "2"]])
       end
     end
   end

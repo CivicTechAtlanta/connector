@@ -33,7 +33,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if project.update(project_params)
+    update_params = project_params
+    update_params.merge!(urls: construct_urls)
+    if project.update(update_params)
       redirect_to project
       flash[:success] = "Project successfully updated!"
     else
@@ -86,6 +88,16 @@ class ProjectsController < ApplicationController
   def verify_project_creator
     unless project.people.first == current_user.person
       redirect_to project
+    end
+  end
+
+  def url_params
+    params.require(:project).permit(:url_types, :urls)
+  end
+
+  def construct_urls
+    params.fetch(:project).fetch(:url_types, []).each_with_index.map do |type, i|
+      [type, params.fetch(:project).fetch(:urls, [])[i]]
     end
   end
 end
