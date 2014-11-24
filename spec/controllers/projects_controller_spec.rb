@@ -102,6 +102,12 @@ RSpec.describe ProjectsController, :type => :controller do
         post :create, project: { name: "Test", description: "Testing description.", url_types: ["Code Repository", "Website"], urls: ["1", "2"] }
         expect(Project.last.urls).to eq([["Code Repository", "1"], ["Website", "2"]])
       end
+
+      it "can set tags" do
+        post :create, project: { name: "Test", description: "X", tag_list: "hi, test" }
+        expect(Project.last.tags.count).to eq(2)
+        expect(Project.last.tag_list).to match_array(["hi", "test"])
+      end
     end
   end
 

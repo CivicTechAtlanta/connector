@@ -20,6 +20,11 @@
       i.fa.fa-plus-square
       | &nbsp; Additional URL
 
+  .form-group
+    div = f.label :tag_list, "Categorize It"
+    = f.text_field :tag_list, class: "form-control", value: @project.tag_list.join(", ")
+    small: i popular tags: #{ ActsAsTaggableOn::Tag.most_used(10).map(&:name).join(", ") }
+
   = f.submit class: "btn btn-primary"
 
 #url-template.row.hidden

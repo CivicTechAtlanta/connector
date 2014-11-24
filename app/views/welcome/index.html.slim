@@ -18,11 +18,11 @@
             .col-xs-12.search-tags
               span Stuck? Trying searching for
               '
-              a.tag ruby on rails
+              = link_to 'ruby on rails', projects_path(tag: "ruby on rails"), class: "tag"
               ' ,
-              a.tag crime
+              = link_to 'crime', projects_path(tag: "crime"), class: "tag"
               ' ,
-              a.tag food
+              = link_to 'food', projects_path(tag: "food"), class: "tag"
 
       /.row
         .col-md-4
