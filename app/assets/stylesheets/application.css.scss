@@ -154,12 +154,12 @@ html, body {
     .list-group-item {
       border-left: 0px;
       border-right: 0px;
+      @include border-top-radius(0);
 
       &:not(:last-of-type) {
         @include border-bottom-radius(0);
         @include border-left-radius(0);
         @include border-right-radius(0);
-        @include border-top-radius(0);
       }
 
       &:last-of-type {
