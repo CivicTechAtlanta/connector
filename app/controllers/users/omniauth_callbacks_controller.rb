@@ -11,6 +11,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:danger] = "We're sorry, but we couldn't log you in."
       redirect_to root_path
     end
+  rescue OmniAuth::Strategies::Facebook::NoAuthorizationCodeError
+    flash[:danger] = "We're sorry, but we couldn't log you in."
+    redirect_to root_path
   end
 
   private
