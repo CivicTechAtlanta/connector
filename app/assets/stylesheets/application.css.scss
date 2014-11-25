@@ -226,3 +226,21 @@ html, body {
     }
   }
 }
+
+.fa {
+  &.social {
+    padding: 10px;
+  }
+
+  &.fa-facebook {
+    color: #3B5998;
+  }
+
+  &.fa-twitter {
+    color: #55ACEE;
+  }
+
+  &.fa-github {
+    color: #333;
+  }
+}

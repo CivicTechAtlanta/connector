@@ -44,7 +44,7 @@
             .panel-body
               ul.list-group
                 - @project.people.each do |person|
-                  = link_to person.name, person, class: "list-group-item"
+                  li.list-group-item = person.name
                 .contribute-actions.list-group-item
                   - if current_person
                     - if @project.people.include?(current_person)

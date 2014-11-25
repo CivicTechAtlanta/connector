@@ -5,8 +5,7 @@ ul.list-group
         .date = comment.created_at.to_s(:comment)
         - if comment.name
           .who
-            ' &nbsp;by
-            = link_to comment.name, comment.user.person
+            ' &nbsp;by #{comment.name}
         - else
           .who &nbsp;by anonymous
 

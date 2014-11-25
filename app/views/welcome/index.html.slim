@@ -1,11 +1,13 @@
 .jumbotron.welcome
   .container
     .well.col-sm-8.col-sm-offset-2
-      p This is a template for the Code for Atlanta event tracking app. Add copy here. I'm not quite sure what to put and I am not good at copy. Now I am just trying to fill space.
+      p We're a bunch of civic-minded technologists, designers, and topic experts
+        using our skills to improve Atlanta and the world.
+      p Join us on #{link_to 'Meetup', "http://www.meetup.com/codeforatlanta/", target: '_blank'} or join our mailing list below.
       div
         .pull-left: form#mc-embedded-subscribe-form.form-inline action="//codeforatlanta.us6.list-manage.com/subscribe/post?u=0cf233d236b57d728b10baea3&amp;id=2939763211" method="post" name="mc-embedded-subscribe-form" novalidate="" role="form" target="_blank"
-          input#mce-EMAIL.form-control name="EMAIL" placeholder=("Your email address") style="width:250px;" type="email" value="" /
-          input#mc-embedded-subscribe.btn.btn-primary name="subscribe" type="submit" value=("Get Updates") /
+          input#mce-EMAIL.form-control name="EMAIL" placeholder=("Your email address") style="width:250px;" type="email" value=""
+          input#mc-embedded-subscribe.btn.btn-primary name="subscribe" type="submit" value="Get Email Updates"
         .pull-right.brigade-logo = image_tag "brigade.png"
 .container
   .row
@@ -23,7 +25,7 @@
           .well.clearfix
             = form_tag projects_path, method: :get do
               span.search-title.text-center Search Projects
-              .col-xs-12: input.form-control#searcher type="text" name="tag"
+              .col-xs-12: input.form-control#searcher type="text" name="tag" autocomplete="off"
             .col-xs-12.search-tags
               span Stuck? Try
               '
