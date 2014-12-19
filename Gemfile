@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem 'redcarpet'
 
 # Time zone
 gem 'tzinfo-data'
