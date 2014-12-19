@@ -2,7 +2,18 @@ footer
   hr
   .row
     .col-sm-8.col-sm-offset-2
-      .pull-right &copy; 2014 Code for Atlanta
+
+      = link_to "http://www.facebook.com/codeforatlanta", target: "_blank" do
+        i.fa.fa-facebook.fa-3x.social
+      = link_to "http://www.twitter.com/codeforatlanta", target: "_blank" do
+        i.fa.fa-twitter.fa-3x.social
+      = link_to "http://www.github.com/codeforatlanta", target: "_blank" do
+        i.fa.fa-github.fa-3x.social
+
+      .pull-right
+        a href=conduct_path Code of Conduct
+
+        ' &nbsp;| &copy; 2014 Code for Atlanta
 
 = javascript_include_tag "application"
 = yield :bottom_js
