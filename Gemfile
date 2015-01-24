@@ -35,6 +35,10 @@ gem 'dotenv-rails'
 gem 'puma'
 gem 'foreman'
 
+#emailing
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry'
@@ -44,6 +48,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 gem 'rails_12factor', group: :production
