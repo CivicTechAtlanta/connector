@@ -41,7 +41,7 @@ gem 'nokogiri'
 
 group :development do
   gem 'spring-commands-rspec'
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development, :test do
