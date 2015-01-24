@@ -22,9 +22,9 @@ projects[0].people << people[0]
 projects[0].people << people[1]
 projects[0].people << people[2]
 
-projects[0].comments.create!(comment: Faker::Lorem.paragraph, user: users[0])
-projects[0].comments.create!(comment: Faker::Lorem.paragraph, user: users[1])
-projects[0].comments.create!(comment: Faker::Lorem.paragraph, user: users[0])
+projects[0].comments.create!(title: Faker::Lorem.sentence, comment: Faker::Lorem.paragraph, user: users[0])
+projects[0].comments.create!(title: Faker::Lorem.sentence, comment: Faker::Lorem.paragraph, user: users[1])
+projects[0].comments.create!(title: Faker::Lorem.sentence, comment: Faker::Lorem.paragraph, user: users[0])
 
 projects[0].tag_list.add("ruby on rails")
 projects[0].tag_list.add("website")
