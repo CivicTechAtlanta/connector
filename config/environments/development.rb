@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -35,9 +35,19 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  port = ENV.fetch("PORT", 5000)
+  host = ENV.fetch("HOST", 'localhost')
+
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = "http://#{host}:#{port}"
   config.action_mailer.default_url_options = {
-    host: 'localhost',
-    port: ENV.fetch("PORT", 5000)
+    host: host,
+    port: port
+  }
+
+  config.action_mailer.smtp_settings = {
+      address: "localhost",
+      port: 1025,
+      domain: "codeforatlanta.org"
   }
 end
