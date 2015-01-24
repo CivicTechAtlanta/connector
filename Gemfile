@@ -35,6 +35,10 @@ gem 'dotenv-rails'
 gem 'puma'
 gem 'foreman'
 
+#emailing
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry'
