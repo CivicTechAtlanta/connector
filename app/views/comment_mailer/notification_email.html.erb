@@ -7,8 +7,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Code for Atlanta Connector</title>
 
-  <link rel="stylesheet" type="text/css" href="stylesheets/email.css" />
   <style>
+    <%
+      @header_bg_color = "#EEEEEE"
+      @facebook = "https://www.facebook.com/codeforatlanta"
+      @twitter = "https://www.twitter.com/codeforatlanta"
+      @github = "https://www.github.com/codeforatlanta"
+    %>
+
+    #logo {
+      height: 65px;
+    }
+
     /* -------------------------------------
 		GLOBAL
     ------------------------------------- */
@@ -77,6 +87,7 @@
     a.fb { background-color: #3B5998!important; }
     a.tw { background-color: #1daced!important; }
     a.gp { background-color: #DB4A39!important; }
+    a.github { background-color: #778899!important; }
     a.ms { background-color: #000!important; }
 
     .sidebar .soc-btn {
@@ -239,15 +250,15 @@
 <body bgcolor="#FFFFFF">
 
 <!-- HEADER -->
-<table class="head-wrap" bgcolor="#999999">
+<table class="head-wrap" bgcolor="<%= @header_bg_color %>">
   <tr>
     <td></td>
     <td class="header container" >
 
       <div class="content">
-        <table bgcolor="#999999">
+        <table bgcolor="<%= @header_bg_color %>">
           <tr>
-            <td><img src="http://placehold.it/200x50/" /></td>
+            <td><img id="logo" src="<%= image_url("cfa-full-main.png") %>" /></td>
           </tr>
         </table>
       </div>
@@ -269,14 +280,16 @@
           <tr>
             <td>
               <h3>Hi, <%= @person.name %></h3>
-              <p class="lead">There have been some new comments on the Code for Atlanta project "<%= @project.name %>"'s discussion.</p>
+              <p class="lead">There have been some new comments on the Code for Atlanta project <strong><%= @project.name.titleize %></strong>.</p>
+
               <% @comments.each do |comment| %>
                 <p>
-                  <%= comment.title %>
+                  <strong><%= comment.title %></strong>
                   <br>
                   <%= comment.comment %>
                 </p>
               <% end %>
+
               <!-- Callout Panel -->
               <p class="callout">
                 <a href="<%= project_url(@project) %>">Respond in the discussion here &raquo;</a>
@@ -293,7 +306,10 @@
                         <td>
 
                           <h5 class="">Connect with Us:</h5>
-                          <p class=""><a href="#" class="soc-btn fb">Facebook</a> <a href="#" class="soc-btn tw">Twitter</a> <a href="#" class="soc-btn gp">Google+</a></p>
+                          <p class="">
+                            <a href="<%= @facebook_url %>" class="soc-btn fb">Facebook</a>
+                            <a href="<%= @twitter_url %>" class="soc-btn tw">Twitter</a>
+                            <a href="<%= @github_url %>" class="soc-btn github">Github</a></p>
 
 
                         </td>
