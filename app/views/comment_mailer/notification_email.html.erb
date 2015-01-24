@@ -280,7 +280,9 @@
           <tr>
             <td>
               <h3>Hi, <%= @person.name %></h3>
-              <p class="lead">There have been some new comments on the Code for Atlanta project <strong><%= @project.name.titleize %></strong>.</p>
+              <p class="lead">There have been some new comments on the Code for Atlanta project
+                <br>
+                <strong><%= @project.name.titleize %></strong>.</p>
 
               <% @comments.each do |comment| %>
                 <p>
