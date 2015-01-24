@@ -3,7 +3,7 @@ class CommentMailer < ActionMailer::Base
 
   def notification_email(project, comments_to_send, person)
     @project = project
-    @comments = comments_to_send
+    @comments = Array(comments_to_send)
     @person = person
 
     mail(to: @person.user.email, subject: "Code for Atlanta Connector - New Comment: #{@project.name}")
