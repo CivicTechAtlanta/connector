@@ -8,6 +8,7 @@ gem 'rails', '4.1.9'
 
 # Database
 gem 'pg'
+gem 'sucker_punch', '~> 1.0'
 
 # Model
 gem 'acts_as_commentable'
