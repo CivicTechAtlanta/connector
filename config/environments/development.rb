@@ -34,4 +34,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  port = ENV.fetch("PORT", 5000)
+  host = ENV.fetch("HOST", 'localhost')
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = "http://#{host}:#{port}"
+  config.action_mailer.default_url_options = {
+    host: host,
+    port: port
+  }
+
+  config.action_mailer.smtp_settings = {
+      address: "localhost",
+      port: 1025,
+      domain: "codeforatlanta.org"
+  }
 end

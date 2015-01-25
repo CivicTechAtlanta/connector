@@ -4,10 +4,11 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Rails
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.9'
 
 # Database
 gem 'pg'
+gem 'sucker_punch', '~> 1.0'
 
 # Model
 gem 'acts_as_commentable'
@@ -36,15 +37,23 @@ gem 'dotenv-rails'
 gem 'puma'
 gem 'foreman'
 
+#emailing
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development do
   gem 'spring-commands-rspec'
-  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 gem 'rails_12factor', group: :production
