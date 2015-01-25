@@ -243,6 +243,7 @@ DEPENDENCIES
   puma
   rails (= 4.1.9)
   rails_12factor
+  redcarpet
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   slim-rails

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   get '/about' => 'welcome#about'
+  get '/conduct' => 'welcome#conduct', :as => :conduct
   root 'welcome#index'
 
   resources :projects do
