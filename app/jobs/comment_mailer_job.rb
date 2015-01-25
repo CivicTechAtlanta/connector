@@ -15,7 +15,7 @@ class CommentMailerJob
   private
 
   def comments_to_send
-    @project.comments.order(created_at: :desc).limit(5)
+    @project.comments.order(created_at: :desc).limit(1)
   end
 
   def people_to_send_to
