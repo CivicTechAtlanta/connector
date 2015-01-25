@@ -90,4 +90,10 @@ Rails.application.configure do
       :authentication => 'login', # Mandrill supports 'plain' or 'login'
       :domain => ENV["MANDRILL_DOMAIN"] # your domain to identify your server when connecting
   }
+
+  host = ENV.fetch("HOSTNAME", "beta.codeforatlanta.org")
+  config.action_mailer.default_url_options = {
+      host: host
+  }
+  config.action_mailer.asset_host = "http://#{host}"
 end
