@@ -1,3 +1,5 @@
+require 'kramdown'
+
 class Project < ActiveRecord::Base
   URL_TYPES = ["Code Repository", "Website"]
   class UrlsValidator < ActiveModel::Validator
@@ -19,5 +21,9 @@ class Project < ActiveRecord::Base
 
   def urls
     super || []
+  end
+
+  def markdown
+    Kramdown::Document.new(self.description).to_html
   end
 end

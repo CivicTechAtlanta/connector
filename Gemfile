@@ -41,6 +41,9 @@ gem 'foreman'
 gem 'premailer-rails'
 gem 'nokogiri'
 
+# Markdown parsing
+gem 'kramdown'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry-rails'
