@@ -1,8 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    person = person_from_omniauth(request.env["omniauth.auth"])
-    user = user_from_omniauth(request.env["omniauth.auth"], person)
-
     if user.persisted?
       sign_in_and_redirect(user, event: :authentication)
       flash[:success] = "Welcome! Check out our projects and get involved!"
@@ -16,7 +13,26 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
+  def google_oauth2
+    if user.persisted?
+      sign_in_and_redirect(user, event: :authentication)
+      flash[:success] = "Welcome! Check out our projects and get involved!"
+    else
+      session["devise.google_data"] = request.env["omniauth.auth"]
+      flash[:danger] = "We're sorry, but we couldn't log you in."
+      redirect_to root_path
+    end
+  end
+
   private
+
+  def person
+    person_from_omniauth(request.env["omniauth.auth"])
+  end
+
+  def user
+    user_from_omniauth(request.env["omniauth.auth"], person)
+  end
 
   def user_from_omniauth(auth, person)
     User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

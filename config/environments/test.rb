@@ -46,5 +46,10 @@ Rails.application.configure do
       uid: '123545',
       info: {name: "Jessica", email: "test@test.com", image: "image.jpg"}
     })
+  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+      provider:'google_oauth2',
+      uid: '123545',
+      info: {name: "Jessica", email: "test@test.com", image: "image.jpg"}
+    })
   OmniAuth.config.mock_auth[:facebook_fail] = :invalid_credentials
 end
