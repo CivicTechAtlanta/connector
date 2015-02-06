@@ -4,7 +4,9 @@ class ProjectsController < ApplicationController
   before_filter :verify_project_creator, only: [:destroy]
 
   def index
-    @projects = tagged_projects.order(updated_at: :asc)
+    @projects = tagged_projects.where(finished: false).order(updated_at: :asc)
+    @finished_projects =
+      tagged_projects.where(finished: true).order(updated_at: :asc)
     @top_tags = ActsAsTaggableOn::Tag.most_used(10)
     @tags_used = Array(params[:tag])
   end
