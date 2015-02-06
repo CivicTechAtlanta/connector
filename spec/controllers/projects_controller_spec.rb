@@ -58,6 +58,23 @@ RSpec.describe ProjectsController, :type => :controller do
       get :show, id: project1.id
       expect(response.body).to include(person.name)
     end
+
+    it "does not show 'Finished, yay!' for an unfinished project" do
+      get :show, id: project1.id
+      expect(response.body).to_not include("Finished, yay!")
+    end
+
+    context "finished project" do
+      before(:each) do
+        project1.finished = true
+        project1.save!
+      end
+
+      it "shows 'Finished, yay!' for a finished project" do
+        get :show, id: project1.id
+        expect(response.body).to include("Finished, yay!")
+      end
+    end
   end
 
   describe "GET 'New'" do

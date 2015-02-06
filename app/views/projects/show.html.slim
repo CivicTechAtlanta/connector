@@ -8,6 +8,8 @@
       .row
         .col-sm-12
           h1 = @project.name.titlecase
+          - if @project.finished == true
+            h3 = "Finished, yay!"
           .panel.panel-primary.project-content
             .panel-body
               p = @project.description
