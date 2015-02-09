@@ -1,5 +1,3 @@
-require 'kramdown'
-
 class Project < ActiveRecord::Base
   URL_TYPES = ["Code Repository", "Website"]
   class UrlsValidator < ActiveModel::Validator
@@ -24,6 +22,6 @@ class Project < ActiveRecord::Base
   end
 
   def markdown
-    Kramdown::Document.new(self.description).to_html
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true)).render description
   end
 end

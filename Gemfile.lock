@@ -82,7 +82,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.0.0)
-    kramdown (1.5.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -237,7 +236,6 @@ DEPENDENCIES
   font-awesome-sass
   foreman
   jquery-rails
-  kramdown
   nokogiri
   omniauth-facebook
   pg
