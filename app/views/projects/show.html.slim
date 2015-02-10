@@ -9,8 +9,7 @@
         .col-sm-12
           h1 = @project.name.titlecase
           .panel.panel-primary.project-content
-            .panel-body
-              p = @project.description
+            .panel-body == @project.markdown
               p: small: i
                 - @project.tag_list.each_with_index do |tag, i|
                   = link_to tag, projects_path(tag: tag)
