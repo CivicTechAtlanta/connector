@@ -17,4 +17,14 @@ class Comment < ActiveRecord::Base
   def name
     user.person.name if has_person?
   end
+
+  def markdown
+    markdown_parser.render comment
+  end
+
+  private
+  # TODO should probably be shared with multiple models. I'm not sure the rails-iest way to do this
+  def markdown_parser
+    @parser ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true))
+  end
 end
