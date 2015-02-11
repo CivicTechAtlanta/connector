@@ -28,10 +28,11 @@ RSpec.describe ProjectsController, :type => :controller do
         project1.save!
       end
 
-      it "lists the project" do
+      it "lists the project (without markdown)" do
         get :index, tag: "test"
         expect(response.body).to include(project1.name.titlecase)
         expect(response.body).not_to include(project2.name.titlecase)
+        expect(response.body).not_to include('====================')
       end
     end
   end
