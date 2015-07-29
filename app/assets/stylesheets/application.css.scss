@@ -248,3 +248,7 @@ html, body {
 .alert-alert {
   @extend .alert-danger;
 }
+
+.slack iframe {
+  vertical-align: bottom;
+}

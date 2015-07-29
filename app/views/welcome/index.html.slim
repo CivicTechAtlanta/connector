@@ -3,12 +3,15 @@
     .well.col-sm-8.col-sm-offset-2
       p We're a bunch of civic-minded technologists, designers, and topic experts
         using our skills to improve Atlanta and the world.
-      p Join us on #{link_to 'Meetup', "http://www.meetup.com/codeforatlanta/", target: '_blank'} or join our mailing list below.
+      p Join us on #{link_to 'Meetup', "http://www.meetup.com/codeforatlanta/", target: '_blank'} and sign up to our mailing list:
       div
         .pull-left: form#mc-embedded-subscribe-form.form-inline action="//codeforatlanta.us6.list-manage.com/subscribe/post?u=0cf233d236b57d728b10baea3&amp;id=2939763211" method="post" name="mc-embedded-subscribe-form" novalidate="" role="form" target="_blank"
           input#mce-EMAIL.form-control name="EMAIL" placeholder=("Your email address") style="width:250px;" type="email" value=""
           input#mc-embedded-subscribe.btn.btn-primary name="subscribe" type="submit" value="Get Email Updates"
         .pull-right.brigade-logo = image_tag "brigade.png"
+
+      div.clearfix
+      p.slack Join the discussion on Slack: <script async defer src="http://slack.codeforatlanta.org/slackin.js?large"></script>
 .container
   .row
     .col-sm-3.col-sm-offset-1
@@ -21,6 +24,7 @@
               iframe frameborder="0" height="440" src="//meetu.ps/2DWfpk" width="225"
     .col-sm-8
       .row
+
         .col-xs-12.search-container
           .well.clearfix
             = form_tag projects_path, method: :get do
