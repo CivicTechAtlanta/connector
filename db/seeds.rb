@@ -7,7 +7,7 @@ projects = []
 people = []
 users = []
 
-5.times do
+6.times do
   projects << FactoryGirl.create(:project)
 end
 
@@ -46,3 +46,6 @@ projects[4].people << people[4]
 projects[4].tag_list.add("website")
 projects[4].tag_list.add("computer")
 projects[4].save
+
+projects[5].finished = true
+projects[5].save
