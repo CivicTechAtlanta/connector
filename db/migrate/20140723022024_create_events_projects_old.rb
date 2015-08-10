@@ -1,4 +1,4 @@
-class CreateEventsProjects < ActiveRecord::Migration
+class CreateEventsProjectsOld < ActiveRecord::Migration
   def change
     create_table :events_projects do |t|
       t.integer :event_id, null: false
