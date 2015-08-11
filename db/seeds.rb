@@ -20,6 +20,7 @@ end
 5.times do
   events << FactoryGirl.create(:event)
 end
+events.first.update!(title: "Civic Hack Night at Atlanta Tech Village")
 
 users << FactoryGirl.create(:user, person: people[0])
 users << FactoryGirl.create(:user, person: people[1])
