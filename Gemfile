@@ -41,6 +41,9 @@ gem 'foreman'
 gem 'premailer-rails'
 gem 'nokogiri'
 
+# scraping meetup events
+gem 'icalendar'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry-rails'
