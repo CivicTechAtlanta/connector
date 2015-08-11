@@ -14,14 +14,28 @@
       p.slack Join the discussion on Slack: <script async defer src="http://slack.codeforatlanta.org/slackin.js?large"></script>
 .container
   .row
-    .col-sm-3.col-sm-offset-1
+    .col-sm-4
       .row
         .col-sm-12
-          .panel.panel-primary
+          .panel.panel-primary.event-showcase
             .panel-heading
-              h2.panel-title Join us on Meetup!
+              h2.panel-title Our Next Event
             .panel-body
-              iframe frameborder="0" height="440" src="//meetu.ps/2DWfpk" width="225"
+              h4 = @event.title.titleize
+              hr
+              p
+                strong When?
+                '  #{@event.start_at.to_s(:event)}
+              p
+                strong Until?
+                '  #{@event.end_at.to_s(:event)}
+              p
+                strong Where?
+                '  #{@event.location}
+              p = @event.description
+              .clearfix
+                .pull-left: p = link_to 'Learn More', @event.url, target: "_blank"
+                .pull-right: p = link_to 'All Events (Meetup)', "http://www.meetup.com/codeforatlanta", target: "_blank"
     .col-sm-8
       .row
 
