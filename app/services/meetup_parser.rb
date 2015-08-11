@@ -13,10 +13,14 @@ class MeetupParser
 
     cal.events.each do |event|
 
+      # get full description from the HTTP page itself
+      event_page = Nokogiri::HTML(Net::HTTP.get(URI(event.url.to_s)))
+      full_description = event_page.css("[itemprop=description]").text || event.description.to_s
+
       # title, description, url, start_at, end_at, location
       event_struct = OpenStruct.new(
         title: event.summary.to_s,
-        description: event.description.to_s, # TODO this is a short description. Need to scrape for full description
+        description: full_description,
         url: event.url.to_s,
         location: event.location.to_s,
         start_at: event.dtstart.to_datetime.to_s,
