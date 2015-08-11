@@ -31,7 +31,8 @@
                 '  #{@event.end_at.to_s(:event)}
               p
                 strong Where?
-                '  #{@event.location}
+                '
+                span = link_to @event.location, "https://maps.google.com?q=#{@event.location}", target: "_blank"
               p = @event.description.truncate(250)
               .clearfix
                 .pull-left: p = link_to 'Learn More', @event.url, target: "_blank"
