@@ -18,4 +18,11 @@ RSpec.describe MeetupParser do
     expect(event.description).to start_with("Code for Atlanta hack nights are all about getting stuff done")
     expect(event.description).to end_with("at the Village!")
   end
+
+  it "doesn't clone events", vcr: { cassette_name: "meetup-parser-aug-10-2015-double" } do
+    expect {
+      MeetupParser.fetch_and_insert
+      MeetupParser.fetch_and_insert
+    }.to change{ Event.count }.by(3)
+  end
 end
