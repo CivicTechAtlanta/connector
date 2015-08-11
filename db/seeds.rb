@@ -2,10 +2,12 @@
 Project.destroy_all
 Person.destroy_all
 User.destroy_all
+Event.destroy_all
 
 projects = []
 people = []
 users = []
+events = []
 
 5.times do
   projects << FactoryGirl.create(:project)
@@ -13,6 +15,10 @@ end
 
 5.times do
   people << FactoryGirl.create(:person)
+end
+
+5.times do
+  events << FactoryGirl.create(:event)
 end
 
 users << FactoryGirl.create(:user, person: people[0])
