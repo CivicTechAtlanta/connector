@@ -22,12 +22,12 @@ class Project < ActiveRecord::Base
   end
 
   def markdown
-    markdown_parser.render description
+    markdown_parser.render(description)
   end
 
-
   private
+
   def markdown_parser
-    @parser ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true))
+    @markdown_parser ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true))
   end
 end
