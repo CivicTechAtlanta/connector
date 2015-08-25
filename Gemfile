@@ -41,6 +41,9 @@ gem 'foreman'
 gem 'premailer-rails'
 gem 'nokogiri'
 
+# scraping meetup events
+gem 'icalendar'
+
 group :development do
   gem 'spring-commands-rspec'
   gem 'pry-rails'
@@ -54,6 +57,8 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'rails_12factor', group: :production
