@@ -13,12 +13,6 @@ class Comment < ActiveRecord::Base
   end
 
   def markdown
-    markdown_parser.render(comment)
-  end
-
-  private
-
-  def markdown_parser
-    @markdown_parser ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true))
+    $markdown_renderer.render(comment)
   end
 end
