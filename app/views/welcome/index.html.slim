@@ -24,13 +24,13 @@
               h4 = @event.title.titleize
               hr
               p
-                strong When?
+                strong When:
                 '  #{@event.start_at.to_s(:event)}
               p
-                strong Until?
+                strong Until:
                 '  #{@event.end_at.to_s(:event)}
               p
-                strong Where?
+                strong Where:
                 '
                 span = link_to @event.location, "https://maps.google.com?q=#{@event.location}", target: "_blank"
               p = @event.description.truncate(250)

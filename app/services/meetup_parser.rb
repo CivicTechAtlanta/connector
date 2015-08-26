@@ -17,7 +17,7 @@ class MeetupParser
         url: event.url.to_s,
         location: event.location.to_s,
         start_at: event.dtstart.to_datetime.to_s,
-        end_at: event.dtend.to_datetime
+        end_at: event.dtend.to_datetime.to_s
       )
 
       Events::Creator.call(event_struct)
