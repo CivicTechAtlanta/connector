@@ -5,7 +5,7 @@ RSpec.describe CommentsController, :type => :controller do
   let(:project) { FactoryGirl.create(:project) }
 
   before(:each) { sign_in(user) }
-
+  
   describe "POST create" do
     it "creates a comment" do
       expect {

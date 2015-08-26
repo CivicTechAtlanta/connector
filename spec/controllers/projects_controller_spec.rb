@@ -58,6 +58,15 @@ RSpec.describe ProjectsController, :type => :controller do
       get :show, id: project1.id
       expect(response.body).to include(person.name)
     end
+
+    context "with comments" do
+      let!(:comment) { Comment.create!(commentable: project1, comment: "# Test") }
+
+      it "shows the markdown comment" do
+        get :show, id: project1.id
+        expect(response.body).to include("<h1>Test</h1>")
+      end
+    end
   end
 
   describe "GET 'New'" do
