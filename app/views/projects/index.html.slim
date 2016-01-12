@@ -52,7 +52,7 @@
               = link_to project, class: "list-group-item project" do
                 .contributors #{project.people.count} contributors
                 .name = project.name.titlecase
-                .description == truncate(strip_tags(project.markdown), length: 300, omission: "...")
+                .description == truncate(strip_tags(project.markdown), length: 300, omission: "...", escape: false)
 
             - if @projects.empty?
               li.list-group-item
