@@ -21,22 +21,25 @@
             .panel-heading
               h2.panel-title Our Next Event
             .panel-body
-              h4 = @event.title.titleize
-              hr
-              p
-                strong When:
-                '  #{@event.start_at.to_s(:event)}
-              p
-                strong Until:
-                '  #{@event.end_at.to_s(:event)}
-              p
-                strong Where:
-                '
-                span = link_to @event.location, "https://maps.google.com?q=#{@event.location}", target: "_blank"
-              p = @event.description.truncate(250)
-              .clearfix
-                .pull-left: p = link_to 'Learn More', @event.url, target: "_blank"
-                .pull-right: p = link_to 'All Events (Meetup)', "http://www.meetup.com/codeforatlanta", target: "_blank"
+              - if @event
+                h4 = @event.title.titleize
+                hr
+                p
+                  strong When:
+                  '  #{@event.start_at.to_s(:event)}
+                p
+                  strong Until:
+                  '  #{@event.end_at.to_s(:event)}
+                p
+                  strong Where:
+                  '
+                  span = link_to @event.location, "https://maps.google.com?q=#{@event.location}", target: "_blank"
+                p = @event.description.truncate(250)
+                .clearfix
+                  .pull-left: p = link_to 'Learn More', @event.url, target: "_blank"
+                  .pull-right: p = link_to 'All Events (Meetup)', "http://www.meetup.com/codeforatlanta", target: "_blank"
+              - else
+                h4 = 'No Events Posted'
     .col-sm-8
       .row
 
