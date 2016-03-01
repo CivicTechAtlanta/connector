@@ -34,7 +34,6 @@
                   strong Where:
                   '
                   span = link_to @event.location, "https://maps.google.com?q=#{@event.location}", target: "_blank"
-                p = @event.description.truncate(250)
                 .clearfix
                   .pull-left: p = link_to 'Learn More', @event.url, target: "_blank"
                   .pull-right: p = link_to 'All Events (Meetup)', "http://www.meetup.com/codeforatlanta", target: "_blank"
@@ -56,6 +55,14 @@
               = link_to 'crime', projects_path(tag: "crime"), class: "tag"
               ' ,
               = link_to 'food', projects_path(tag: "food"), class: "tag"
+
+        .col-xs-12.sponsor-container
+            h3.text-center This month's Civic Hack Night sponsor
+
+            p
+              a href="https://twitter.com/PardotEng"
+                img src="http://photos1.meetupstatic.com/photos/event/1/2/d/600_447420301.jpeg" width="300px" align="left"
+              ' Pardot is B2B marketing automation by Salesforce, a software-as-a-service application built for marketing and sales departments. Pardot engineers are innovating fast & solving big technical problems at scale. See all <a href="http://prd.to/careers">open positions</a>.
 
       /.row
         .col-md-4
