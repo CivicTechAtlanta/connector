@@ -11,9 +11,13 @@ footer
         i.fa.fa-github.fa-3x.social
 
       .pull-right
+        = mail_to "yall@codeforatlanta.org"
+        ' &nbsp;|
         a href=conduct_path Code of Conduct
 
-        ' &nbsp;| &copy; 2014 Code for Atlanta
+        ' &nbsp;| &copy;
+        = Time.now.year
+        ' &nbsp;Code for Atlanta
 
 = javascript_include_tag "application"
 = yield :bottom_js

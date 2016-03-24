@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     @tags = ActsAsTaggableOn::Tag.all.pluck(:name)
+    @event = Event.where("end_at > ?", Time.now).order(end_at: :asc).first
   end
 
   def about

@@ -1,4 +1,4 @@
-class CreatePeopleEvents < ActiveRecord::Migration
+class CreatePeopleEventsOld < ActiveRecord::Migration
   def change
     create_table :events_people do |t|
       t.integer :person_id, null: false

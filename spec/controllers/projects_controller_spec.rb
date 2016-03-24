@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe ProjectsController, :type => :controller do
   render_views
 
-  let!(:project1) { FactoryGirl.create(:project) }
-  let!(:project2) { FactoryGirl.create(:project) }
+  let!(:project1) { FactoryGirl.create(:project, description: "# Project 1") }
+  let!(:project2) { FactoryGirl.create(:project, description: "Project 2") }
   let!(:person) { FactoryGirl.create(:person) }
   let!(:person2) { FactoryGirl.create(:person) }
   let!(:user) { FactoryGirl.create(:user, person_id: person.id) }
@@ -18,20 +18,22 @@ RSpec.describe ProjectsController, :type => :controller do
 
     it "shows the projects" do
       get :index
-      expect(response.body).to include(project1.name.titlecase, project1.description.first(50))
-      expect(response.body).to include(project2.name.titlecase, project2.description.first(50))
+      expect(response.body).to include(project1.name.titlecase, "Project 1") # Tags stripped
+      expect(response.body).to include(project2.name.titlecase, "Project 2")
     end
 
     context "with tags" do
       before(:each) do
         project1.tag_list.add("test")
+        project1.description = "# Test"
         project1.save!
       end
 
-      it "lists the project" do
+      it "lists the project (without markdown)" do
         get :index, tag: "test"
         expect(response.body).to include(project1.name.titlecase)
         expect(response.body).not_to include(project2.name.titlecase)
+        expect(response.body).not_to include('# Test')
       end
     end
   end
@@ -51,12 +53,21 @@ RSpec.describe ProjectsController, :type => :controller do
     it "shows the project" do
       get :show, id: project1.id
       expect(response.body).to include(project1.name.titlecase)
-      expect(response.body).to include(project1.description)
+      expect(response.body).to include(project1.markdown)
     end
 
     it "shows the people" do
       get :show, id: project1.id
       expect(response.body).to include(person.name)
+    end
+
+    context "with comments" do
+      let!(:comment) { Comment.create!(commentable: project1, comment: "# Test") }
+
+      it "shows the markdown comment" do
+        get :show, id: project1.id
+        expect(response.body).to include("<h1>Test</h1>")
+      end
     end
   end
 

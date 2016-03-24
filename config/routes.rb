@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   resources :people
+
+  get '/donate', to: redirect('https://secure.codeforamerica.org/page/contribute/default?brigade=Code%20for%20Atlanta')
 end

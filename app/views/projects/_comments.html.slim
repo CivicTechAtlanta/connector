@@ -9,7 +9,7 @@ ul.list-group
         - else
           .who &nbsp;by anonymous
 
-      .content = comment.comment
+      .content == comment.markdown
   li.list-group-item.comment
     = form_tag project_comments_path(project) do
       .form-group

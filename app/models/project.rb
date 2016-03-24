@@ -22,6 +22,6 @@ class Project < ActiveRecord::Base
   end
 
   def markdown
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true)).render description
+    $markdown_renderer.render(description)
   end
 end
