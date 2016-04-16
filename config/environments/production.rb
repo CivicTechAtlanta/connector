@@ -82,16 +82,16 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-      :address   => "smtp.mandrillapp.com",
-      :port      => 587,
-      :enable_starttls_auto => true, # detects and uses STARTTLS
-      :user_name => ENV["MANDRILL_USERNAME"],
-      :password  => ENV["MANDRILL_APIKEY"], # SMTP password is any valid API key
-      :authentication => 'login', # Mandrill supports 'plain' or 'login'
-      :domain => ENV["MANDRILL_DOMAIN"] # your domain to identify your server when connecting
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'www.codeforatlanta.org',
+    :authentication => :plain,
   }
+  config.action_mailer.delivery_method = :smtp
 
-  host = ENV.fetch("HOSTNAME", "beta.codeforatlanta.org")
+  host = ENV.fetch("HOSTNAME", "www.codeforatlanta.org")
   config.action_mailer.default_url_options = {
       host: host
   }
