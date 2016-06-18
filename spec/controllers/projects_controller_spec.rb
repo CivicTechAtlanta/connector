@@ -68,6 +68,12 @@ RSpec.describe ProjectsController, :type => :controller do
         get :show, id: project1.id
         expect(response.body).to include("<h1>Test</h1>")
       end
+
+      it "doesn't show deleted comment" do
+        comment.update!(deleted: true)
+        get :show, id: project1.id
+        expect(response.body).not_to include("<h1>Test</h1>")
+      end
     end
   end
 
