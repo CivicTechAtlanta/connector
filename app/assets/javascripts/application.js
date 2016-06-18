@@ -33,12 +33,12 @@ $(".project-form").on("click", ".new-url", function(event) {
 
 // Set up
 $(document).ready(  function() {
-	var number = "0xFF9481";
-	$("form").append('<input type="hidden" name="imahuman" class="imahuman" value="0" />')
-	.focus( function() {
-		this.imahuman.value = parseInt(number, 16);
-	})
-	.click( function() {
-		this.imahuman.value = parseInt(number, 16);
-	});
+  var number = "0xFF9481";
+  $("form").append('<input type="hidden" name="imahuman" class="imahuman" value="0" />')
+  .focus( function() {
+    this.imahuman.value = parseInt(number, 16);
+  })
+  .click( function() {
+    this.imahuman.value = parseInt(number, 16);
+  });
 });
