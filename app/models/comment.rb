@@ -4,6 +4,10 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
 
+  def self.current
+    where.not(deleted: true)
+  end
+
   def has_person?
     user.try!(:person).try!(:present?)
   end

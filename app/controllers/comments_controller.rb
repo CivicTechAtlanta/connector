@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   def create
+    return head :forbidden unless params["imahuman"].to_s == ENV["IMAHUMAN"].to_s
+
     if project.comments.create(comment_params.merge(user: current_user))
       notify_project
       redirect_to project_path(project), notice: "Comment added!"
