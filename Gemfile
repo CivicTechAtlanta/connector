@@ -16,7 +16,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 
 # Login
 gem 'devise'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '2.0.1'
 
 # Assets pipeline
 gem 'sass-rails', '~> 4.0.3'

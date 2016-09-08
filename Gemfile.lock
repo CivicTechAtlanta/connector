@@ -258,7 +258,7 @@ DEPENDENCIES
   icalendar
   jquery-rails
   nokogiri
-  omniauth-facebook
+  omniauth-facebook (= 2.0.1)
   pg
   premailer-rails
   pry-rails
