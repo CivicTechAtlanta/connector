@@ -14,6 +14,7 @@ ul.list-group
     = form_tag project_comments_path(project) do
       .form-group
         textarea.form-control placeholder="Comment" name="comment" required=true
+      = recaptcha_tags
       .form-group
         button.btn.btn-primary
           - if current_person
