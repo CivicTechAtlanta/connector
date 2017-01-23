@@ -10,7 +10,6 @@ RSpec.describe CommentMailerJob do
 
   let!(:comment1) { project.comments.create!(title: Faker::Lorem.words(5).join(" "), comment: Faker::Lorem.paragraph, user: person1.user) }
   let!(:comment2) { project.comments.create!(title: Faker::Lorem.words(5).join(" "), comment: Faker::Lorem.paragraph, user: person1.user) }
-  #let!(:comment3) { project.comments.create!(title: Faker::Lorem.words(5).join(" "), comment: Faker::Lorem.paragraph, user: person2.user) }
 
   subject { CommentMailerJob.perform_async(project, person1) }
 
