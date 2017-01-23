@@ -1,28 +1,28 @@
 source 'https://rubygems.org'
 
 # ruby
-ruby '2.1.2'
+ruby '2.3.3'
 
 # Rails
-gem 'rails', '4.1.9'
+gem 'rails', '~> 4.2'
 
 # Database
 gem 'pg'
-gem 'sucker_punch', '~> 1.0'
+gem 'sucker_punch'
 
 # Model
 gem 'acts_as_commentable'
-gem 'acts-as-taggable-on', '~> 3.4'
+gem 'acts-as-taggable-on'
 
 # Login
 gem 'devise'
-gem 'omniauth-facebook', '2.0.1'
-gem 'omniauth', '1.2.2'
-gem 'omniauth-oauth2', '1.3.1'
+gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-oauth2'
 
 # Assets pipeline
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'uglifier'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'bootstrap-sass'
