@@ -45,6 +45,7 @@ gem 'nokogiri'
 
 # scraping meetup events
 gem 'icalendar'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development do
   gem 'better_errors'
