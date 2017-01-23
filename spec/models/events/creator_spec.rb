@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Events::Creator, :type => :model do
+
+  before do
+    Timecop.freeze(Time.local(1990))
+  end
+
   let!(:existing_event) { FactoryGirl.create(:event) }
   let!(:data) { OpenStruct.new(existing_event.attributes.slice("title", "description", "url", "location", "start_at", "end_at")) }
 
