@@ -45,6 +45,7 @@ gem 'nokogiri'
 
 # scraping meetup events
 gem 'icalendar'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development do
   gem 'better_errors'
@@ -54,7 +55,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
 end

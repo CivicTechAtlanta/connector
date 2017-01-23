@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Events::Creator, :type => :model do
+
   let!(:existing_event) { FactoryGirl.create(:event) }
   let!(:data) { OpenStruct.new(existing_event.attributes.slice("title", "description", "url", "location", "start_at", "end_at")) }
 
@@ -28,8 +29,8 @@ RSpec.describe Events::Creator, :type => :model do
     expect(existing_event.title).to eq("New")
     expect(existing_event.description).to eq("New Desc")
     expect(existing_event.location).to eq("New Location")
-    expect(existing_event.start_at).to eq(new_start_at)
-    expect(existing_event.end_at).to eq(new_end_at)
+    expect(existing_event.start_at).to be_within(1).of(new_start_at)
+    expect(existing_event.end_at).to be_within(1).of(new_end_at)
   end
 
   context "with a new url" do
@@ -45,8 +46,8 @@ RSpec.describe Events::Creator, :type => :model do
       expect(event.title).to eq("New")
       expect(event.description).to eq("New Desc")
       expect(event.location).to eq("New Location")
-      expect(event.start_at).to eq(new_start_at)
-      expect(event.end_at).to eq(new_end_at)
+      expect(event.start_at).to be_within(1).of(new_start_at)
+      expect(event.end_at).to be_within(1).of(new_end_at)
       expect(event.url).to eq("url")
     end
   end
