@@ -53,5 +53,5 @@
                       = link_to contribute_project_path(@project), class: "btn btn-success btn-block" do
                         | List me as a contributor!
                   - else
-                    = link_to user_omniauth_authorize_path(:facebook), class: "btn btn-default btn-block" do
+                    = link_to user_facebook_omniauth_authorize_path, class: "btn btn-default btn-block" do
                       ' Login to be listed as a contributor

@@ -25,6 +25,6 @@ class CommentsController < ApplicationController
   end
 
   def notify_project
-    CommentMailerJob.new.async.perform(project, current_person)
+    CommentMailerJob.perform_async(project, current_person)
   end
 end

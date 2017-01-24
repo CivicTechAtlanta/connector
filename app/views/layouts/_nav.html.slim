@@ -15,4 +15,4 @@
           - if user_signed_in?
             = link_to "Logout", destroy_user_session_path
           - else
-            = link_to "Sign In", user_omniauth_authorize_path(:facebook)
+            = link_to "Sign In", user_facebook_omniauth_authorize_path
