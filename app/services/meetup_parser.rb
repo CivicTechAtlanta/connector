@@ -3,7 +3,7 @@
 class MeetupParser
   def self.fetch_and_insert
     uri = URI('http://api.meetup.com/codeforatlanta/upcoming.ical')
-    cals = Icalendar.parse(Net::HTTP.get(uri))
+    cals = Icalendar::Calendar.parse(Net::HTTP.get(uri))
     cal = cals.first
     cal.events.each do |event|
       # get full description from the HTTP page itself
