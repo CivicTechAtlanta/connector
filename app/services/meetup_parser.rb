@@ -2,7 +2,7 @@
 #  Fetches data from Meetup and calls Events::Creator for insertion into database
 class MeetupParser
   def self.fetch_and_insert
-    uri = URI('http://www.meetup.com/codeforatlanta/events/ical/')
+    uri = URI('http://api.meetup.com/codeforatlanta/upcoming.ical')
     cals = Icalendar.parse(Net::HTTP.get(uri))
     cal = cals.first
     cal.events.each do |event|
