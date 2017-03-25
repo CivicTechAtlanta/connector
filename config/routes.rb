@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :people
 
   get '/donate', to: redirect('https://secure.codeforamerica.org/page/contribute/default?brigade=Code%20for%20Atlanta')
+  get '/data', to: redirect('https://github.com/codeforatlanta/open-data')
 end
