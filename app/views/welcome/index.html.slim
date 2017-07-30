@@ -41,28 +41,26 @@
                 h4 = 'No Events Posted'
     .col-sm-8
       .row
-
-        .col-xs-12.search-container
-          .well.clearfix
-            = form_tag projects_path, method: :get do
-              span.search-title.text-center Search Projects
-              .col-xs-12: input.form-control#searcher type="text" name="tag" autocomplete="off"
-            .col-xs-12.search-tags
-              span Stuck? Try
-              '
-              = link_to 'ruby on rails', projects_path(tag: "ruby on rails"), class: "tag"
-              ' ,
-              = link_to 'crime', projects_path(tag: "crime"), class: "tag"
-              ' ,
-              = link_to 'food', projects_path(tag: "food"), class: "tag"
-
-        .col-xs-12.sponsor-container
-            h3.text-center This month's Civic Hack Night sponsor
-
-            p
-              a href="https://mailchimp.com/about/jobs/"
-                img src="https://secure.meetupstatic.com/photos/event/3/b/0/8/600_459495112.jpeg" width="180px" align="left" style="padding-right: 10px;"
-              ' More than 15 million people and businesses around the world use MailChimp. Their features and integrations allow you to send marketing emails, automated messages, and targeted campaigns. And their detailed reports help you keep improving over time.
+      
+      p
+        ' Hey there! We're a
+        a href="http://www.codeforamerica.org/brigade/about" Code for America Brigade
+        ' . We hold civic hack night about two times per month.
+        ' Find the next event on
+        a href="http://www.meetup.com/codeforatlanta" target="_blank" Meetup
+        ' .
+      p
+        ' If you have an established project to work on, or if you'd like to
+        ' lead an interest group brainstorm, please email us at
+        a href="mailto:yall@codeforatlanta.org" yall@codeforatlanta.org
+        ' .
+      p
+        ' And we need all of y'all: Developers, designers, project managers, data analysts, and subject-matter experts are all welcome.
+        ' Bring your laptop and some great ideas!
+      p
+        ' All participants of Code for Atlanta events are held to a
+        a href=conduct_path Code of Conduct and Anti-Harrassment Policy
+        ' .
 
       /.row
         .col-md-4

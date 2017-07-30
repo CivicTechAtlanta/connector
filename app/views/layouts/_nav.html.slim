@@ -9,10 +9,4 @@
       a.navbar-brand href=root_path = image_tag("cfa-full-main.png")
     .navbar-collapse.collapse.pull-right
       ul.nav.navbar-nav
-        li: a href=projects_path  Projects
-        li: a href=about_path  About Us
-        li
-          - if user_signed_in?
-            = link_to "Logout", destroy_user_session_path
-          - else
-            = link_to "Sign In", user_facebook_omniauth_authorize_path
+      
