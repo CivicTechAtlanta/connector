@@ -41,7 +41,7 @@ gem 'foreman'
 
 #emailing
 gem 'premailer-rails'
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.8'
 
 # scraping meetup events
 gem 'icalendar'
