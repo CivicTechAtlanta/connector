@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resources :people
 
-  get '/donate', to: redirect('https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page&brigade=Code%20for%20Atlanta')
+  get '/donate', to: redirect('https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=codeforatlanta&brigade=Code%20for%20Atlanta')
   get '/data', to: redirect('https://docs.google.com/document/d/122GLuyEnhQbAFbOMGqnj4nSAD2OW13DpkAxsxsGJTsA/edit')
   get '/greenspace', to: redirect('https://docs.google.com/document/d/1t1ajdjHXcz4zI4joHMbgGSN8nCgvnPpyfPF2t2ZXp6g/edit?usp=sharing')
 end
