@@ -12,4 +12,7 @@ class WelcomeController < ApplicationController
   def conduct
   end
 
+  def spark
+  end
+
 end
