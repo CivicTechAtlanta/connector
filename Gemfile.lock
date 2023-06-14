@@ -14,7 +14,7 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.2.7.1)
+    actionview (6.1.7.3)
       activesupport (= 4.2.7.1)
       builder (~> 3.1)
       erubis (~> 2.7.0)
