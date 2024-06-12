@@ -7,7 +7,7 @@ GEM
       activejob (= 4.2.7.1)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (6.1.7.4)
+    actionpack (6.1.7.8)
       actionview (= 4.2.7.1)
       activesupport (= 4.2.7.1)
       rack (~> 1.6)
