@@ -26,7 +26,7 @@ GEM
     activemodel (4.2.7.1)
       activesupport (= 4.2.7.1)
       builder (~> 3.1)
-    activerecord (6.1.7.1)
+    activerecord (7.1.5.2)
       activemodel (= 4.2.7.1)
       activesupport (= 4.2.7.1)
       arel (~> 6.0)
