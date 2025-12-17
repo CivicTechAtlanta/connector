@@ -1,3 +1,6 @@
+# !! ARCHIVED - THIS REPO IS NO LONGER ACTIVELY USED OR MAINTAINED !!
+
+
 # Getting started
 
 The following is a brief guide on how you can get started working on connector:
